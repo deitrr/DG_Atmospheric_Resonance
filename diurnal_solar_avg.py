@@ -1,14 +1,13 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import netCDF4 as nc
 import pdb
 import pathlib
 import warnings
 import os
-# from mpl_toolkits.basemap import Basemap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
 import scipy.interpolate as sint
 import pyshtools as sh
+from windspharm.standard import VectorWind
+#suppress deprecation warnings coming from netCDF4
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #Change this as needed to point to the 'main' simulations
@@ -17,19 +16,7 @@ parent_path = '../sims_main/'
 #Create a separate folder so that old output isn't overwritten
 output_path = '../sims_main_new/'
 
-#prob turn this into a dictionary with the rotation rate built in
-# simnames =  [
-#             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
-#             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2'
-#             ]
-#
-# rotpers = np.array([0.9167, 1.0])
-
-# simlist = {
-#            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2': 0.9167,
-#            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2': 1.0
-#            }
-
+#list of simulations here, with rotperiod (units of modern day), and heat capacity
 simlist = [
            {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
                'rotper': 0.9167, 'cp': 1034.93},
@@ -39,9 +26,14 @@ simlist = [
 
 fields = [
           ['FSDS','fsds_phase',2, False],
-          ['TGCLDCWP', 'CWP', 2, True],
+#          ['PS', 'p_anom', 2, True],
+#          ['TGCLDCWP', 'CWP', 2, True],
+#          ['PRECT', 'PRECT', 2, True],
           ['DIVV', 'DIVV', 3, True],
-          ['QRS', 'QRS', 3, True],
+#          ['QRS', 'QRS', 3, True],
+#          ['CMFMC', 'CMFMC', 3, True],
+#          ['CMFMCDZM', 'CMFMCDZM', 3, True],
+#          ['ZMDT', 'ZMDT', 3, True],
           ]
 
 
@@ -119,8 +111,8 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
         #additional correction from fsds file
         fsds_file = np.str(out_path_full / (simname + '_fsds_phase_save.npz'))
         arc2 = np.load(fsds_file)
-        fsds_mean = arc2['ps_anom_mean'] #forgot to change the name in this file!
-        clm_fsds = arc2['clm']
+        fsds_mean = arc2['field_anom_mean']
+        clm_fsds = arc2['clm_anom']
         offset2 = np.arctan2(clm_fsds[1,1,1],clm_fsds[0,1,1])*180/np.pi
     else:
         offset2 = 0.0
@@ -150,6 +142,7 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
     if ndim == 3:
         field_mean = np.mean(field_reorder[:ftime,ilev,:,:], axis=0)
         field_anom_mean = np.mean(field_anom_reorder[:ftime,ilev,:,:], axis=0)
+        del field_reorder, field_anom_reorder
         clm_mean = np.zeros((len(p),2,np.int(lmax+1),np.int(lmax+1)))
         clm_anom = np.zeros((len(p),2,np.int(lmax+1),np.int(lmax+1)))
         for ilev in np.arange(len(p)):
