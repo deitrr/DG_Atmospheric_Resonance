@@ -93,7 +93,10 @@ for i in np.arange(len(simnames)):
     lat = arc['lat']
     ps = arc['ps']
     rotrate = arc['rotrate']
-    ps_anom_mean = arc['ps_anom_mean']
+    if 'field_anom_mean' in arc:
+        ps_anom_mean = arc['field_anom_mean']
+    else:
+        ps_anom_mean = arc['ps_anom_mean']
     lmax = arc['lmax']
     clm = arc['clm']
     lon2d, lat2d = np.meshgrid(lon,lat)
@@ -168,7 +171,7 @@ for i in np.arange(len(simnames)):
       cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
       cax.xaxis.set_ticks_position('top')
       cax.xaxis.set_label_position('top')
-      cbar.set_label(clabels[imode],fontsize=8) 
+      cbar.set_label(clabels[imode],fontsize=8)
 
  # cax = make_axes_locatable(ax).append_axes('right',size='5%',pad=0.05)
  # cbar = plt.colorbar(c,cax=cax)

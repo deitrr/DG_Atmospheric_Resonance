@@ -85,10 +85,10 @@ simnamesT = [
             'solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_24hr',
             'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_20hr', #67
             'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21hr',
-            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr', 
-            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-75hr', 
-            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr', 
-            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr', 
+            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr',
+            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-75hr',
+            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr',
+            'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr',
             'solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_24hr',
             'solar0p9_lr_4x5_ch4-30_co2-2000_21-5hr', #74
             'solar0p9_lr_4x5_ch4-30_co2-2000_22hr',
@@ -215,20 +215,20 @@ rotpers = np.array([
                     0.8333, 0.875, 0.8958, 0.9063, 0.9167, 0.9583, 1.0,
                     0.8958, 0.9167, 0.9375, 0.9583, 1.0,
                     0.6667, 0.75, 0.8333, 0.8542, 0.875, 0.8958, 0.9167, 1.0,
-                    0.9271 
+                    0.9271
   ])
 
 cmap = plt.cm.seismic
 sets = [0, 8, 12, 16, 20, 21, 31, 42, 44, 48, 59, 63, 65, 67, 74, 79, 87, 88]
 rows = [0, 0, 0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 1]
 #colors = ['deepskyblue','darkblue', 'springgreen', 'darkgreen','darkred', 'purple', 'magenta', 'red', 'k', 'orange', '0.3','0.5', '0.7', 'lightcoral', 'darkred']
-#colors = ['0.5', '0.5', '0.7', '0.7', 'magenta', 'gold', cmap(1.0), cmap(0.2), cmap(0.35), 'k', cmap(0.45), cmap(0.55), cmap(0.75), 'darkorange', 'k', 'k'] 
+#colors = ['0.5', '0.5', '0.7', '0.7', 'magenta', 'gold', cmap(1.0), cmap(0.2), cmap(0.35), 'k', cmap(0.45), cmap(0.55), cmap(0.75), 'darkorange', 'k', 'k']
 colors = [cmap(0.0), cmap(0.1), cmap(0.3), cmap(0.4), cmap(0.55),cmap(0.7),cmap(0.9), cmap(0.2), cmap(0.3), 'k', cmap(0.4), cmap(0.55), cmap(0.65),'0.3',cmap(0.75),cmap(0.9), 'gold']
 #labels = ['WACCM modern', 'CAM4 modern', 'ExoCAM 3000 ppm CH$_4$', 'ExoCAM 0.8 ppm CH$_4$', 'WACCM modern, POP', 'WACCM low O$_3$',
-#	  'WACCM low O$_3$, 4x CO$_2$', 'ExoCAM 30 pmm CH$_4$, 0.9 S$_0$', 'ExoCAM 0 ppm CH$_4$, 0.9 S$_0$', 
+#	  'WACCM low O$_3$, 4x CO$_2$', 'ExoCAM 30 pmm CH$_4$, 0.9 S$_0$', 'ExoCAM 0 ppm CH$_4$, 0.9 S$_0$',
 #           'ExoCAM 30 ppm CH$_4$, 0.9 S$_0$\n 2000 ppm CO$_2$','ExoCAM 1000 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 2000 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 3000 ppm CH$_4$, 0.9 S$_0$',
 #          'ExoCAM 10 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 100 ppm CH$_4$, 0.9 S$_0$']
-labels = ['CAM4', 'WACCM', 'WACCM, low O$_3$', 'WACCM, low O$_3$, 4x CO$_2$', 'WACCM, POP', 
+labels = ['CAM4', 'WACCM', 'WACCM, low O$_3$', 'WACCM, low O$_3$, 4x CO$_2$', 'WACCM, POP',
             'ExoCAM, 0.8 ppm CH$_4$','ExoCAM, 3000 ppm CH$_4$', 'ExoCAM, 0 ppm CH$_4$', 'ExoCAM, 10 ppm CH$_4$',
             'ExoCAM, 30 pmm CH$_4$', 'ExoCAM, 100 ppm CH$_4$', 'ExoCAM, 1000 ppm CH$_4$',
             'ExoCAM, 2000 ppm CH$_4$', 'ExoCAM, 3000 ppm CH$_4$', 'ExoCAM, 30 ppm CH$_4$,\n 2000 ppm CO$_2$',
@@ -246,7 +246,7 @@ reference_index = np.where(rotpers==1.0)[0]
 for i in np.arange(len(simnames)):
   if pathlib.Path(parent_path+simnames[i]).exists():
     p_anom_file = parent_path + simnames[i]+'/merged_hist/'+simnames[i]+'_p_anom_save.npz'
-  else: 
+  else:
     p_anom_file = suppl_path + simnames[i]+'/merged_hist/'+simnames[i]+'_p_anom_save.npz'
 
   arc = np.load(p_anom_file)
@@ -254,7 +254,10 @@ for i in np.arange(len(simnames)):
   lat = arc['lat']
   ps = arc['ps']
   rotrate = arc['rotrate']
-  ps_anom_mean = arc['ps_anom_mean']
+  if 'field_anom_mean' in arc:
+      ps_anom_mean = arc['field_anom_mean']
+  else:
+      ps_anom_mean = arc['ps_anom_mean']
   lmax = arc['lmax']
   clm = arc['clm']
 
@@ -273,20 +276,20 @@ for i in np.arange(len(simnames)):
 
   dp22[i] = np.sqrt(clm[0,2,2]**2 + clm[1,2,2]**2)
   p_anom_amp[i] = np.max(shmap)
-  
+
   #get glob mean surf T
   #simpath = simnamesT[i]
   if pathlib.Path(parent_path+simnames[i]).exists():
     file = parent_path + simnamesT[i] + "/merged_hist/" + simnamesT[i] + ".cam.h0.globmean_0031_0060.nc"
   else:
     file = suppl_path + simnamesT[i] + "/merged_hist/" + simnamesT[i] + ".cam.h0.globmean_0031_0060.nc"
-    
+
   if not pathlib.Path(file).exists():
     print(file+" is missing")
   else:
     data = nc.Dataset(file,'r')
     Ts[i] = data['TS'][:].squeeze()
-  
+
 #fig, axes = plt.subplots(ncols=2,nrows=1,figsize=(7.5,6))
 fig = plt.figure(figsize=(7.5,6))
 
@@ -339,11 +342,11 @@ for iset in np.arange(len(sets)-1):
 
   if iset != len(sets)-2:
     print(iset)
-    print(simnames[reference_index[iset]])  
+    print(simnames[reference_index[iset]])
 
     if rows[iset] == 0:
       ax = ax2
-    else: 
+    else:
       ax = ax4
     ax.plot(p_anom_amp[sets[iset]:sets[iset+1]], (Ts[sets[iset]:sets[iset+1]]-Ts[reference_index[iset]]),marker=markers[iset], color=colors[iset], label=labels[iset],ls='None',ms = ms)
 
