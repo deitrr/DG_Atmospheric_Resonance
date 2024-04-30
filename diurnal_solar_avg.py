@@ -24,19 +24,21 @@ simlist = [
           ]
 
 fields = [
-          ['FSDS','fsds_phase',2, False],
-          ['PS', 'p_anom', 2, True],
-          ['TGCLDCWP', 'CWP', 2, True],
-          ['PRECT', 'PRECT', 2, True],
-          ['DIVV', 'DIVV', 3, True],
-          ['QRS', 'QRS', 3, True],
-          ['CMFMC', 'CMFMC', 3, True],
-          ['CMFMCDZM', 'CMFMCDZM', 3, True],
-          ['ZMDT', 'ZMDT', 3, True],
+          ['FSDS','fsds_phase',2, False, 'all'],
+          ['PS', 'p_anom', 2, True, 'all'],
+          ['TGCLDCWP', 'CWP', 2, True, 'all'],
+          ['PRECT', 'PRECT', 2, True, 'all'],
+          ['PRECT', 'PRECT', 2, True, 'land'],
+          ['PRECT', 'PRECT', 2, True, 'ocean'],
+          ['DIVV', 'DIVV', 3, True, 'all'],
+          ['QRS', 'QRS', 3, True, 'all'],
+          ['CMFMC', 'CMFMC', 3, True, 'all'],
+          ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'],
+          ['ZMDT', 'ZMDT', 3, True, 'all'],
           ]
 
 
-def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
+def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     #diurnal averaging about solar longitude for 2D field
     #need to have SW flux file already calculated to center the sun at long = 0
 
@@ -57,7 +59,14 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
     if not out_path_full.exists():
         out_path_full.mkdir(parents=True)
 
-    out_file = np.str(out_path_full / (simname + '_' + out_field_name + '_save.npz'))
+    if geo == 'land' or geo == 'ocean':
+        out_file = np.str(out_path_full / (simname + '_' + geo + '_' + out_field_name + '_save.npz'))
+        #need to get land fraction, just take it from any merged 60yr history file
+        landfrac = nc.Dataset(parent_path +
+                    'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr/merged_hist/'+
+                    'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr.cam.h0.merged_0001_0060.nc','r')['LANDFRAC'][:].squeeze()
+    else:
+        out_file = np.str(out_path_full / (simname + '_' + out_field_name + '_save.npz'))
 
     #now get the necessary fields
 #    z3 = data['Z3'][:]
@@ -122,6 +131,9 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
 
     field_reorder = np.zeros_like(field0)
     field_anom_reorder = np.zeros_like(field_anom)
+    if geo == 'land' or geo == 'ocean':
+        landfrac_reorder = np.zeros_like(field0)
+
     for itime in np.arange(ftime):
       if ndim == 3:
           for ilev in np.arange(len(p)):
@@ -134,10 +146,28 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
           field_reorder[itime,:,:] = interp(lon,lat)
           interp = sint.interp2d(lon_of_sun[itime],lat,field_anom[itime,:,:])
           field_anom_reorder[itime,:,:] = interp(lon,lat)
+      if geo == 'land' or geo == 'ocean':
+          interp = sint.interp2d(lon_of_sun[itime],lat,landfrac[0,:,:])
+          landfrac_reorder[itime,:,:] = interp(lon,lat)
 
     del field0, field_anom   #keeping memory down
     lon2d, lat2d = np.meshgrid(lon,lat)
     lmax = np.floor(np.sqrt(len(lat)*len(lon))/2)
+
+    #below geo options not written to handle 3-D fields
+    if geo == 'land':
+        #quick and dirty way to mask ocean areas
+        field_reorder *= landfrac_reorder
+        field_reorder[landfrac_reorder==0] = np.nan
+        field_anom_reorder *= landfrac_reorder
+        field_anom_reorder[landfrac_reorder==0] = np.nan
+    elif geo == 'ocean':
+        #quick and dirty way to mask land areas
+        field_reorder *= (1.0 - landfrac_reorder)
+        field_reorder[landfrac_reorder==1] = np.nan
+        field_anom_reorder *= (1.0 - landfrac_reorder)
+        field_anom_reorder[landfrac_reorder==1] = np.nan
+
     if ndim == 3:
         field_mean = np.mean(field_reorder[:ftime,:,:,:], axis=0)
         field_anom_mean = np.mean(field_anom_reorder[:ftime,:,:,:], axis=0)
@@ -148,8 +178,8 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
           clm_mean[ilev], chi2 = sh.expand.SHExpandLSQ(field_mean[ilev,:,:].ravel(),lat2d.ravel(),lon2d.ravel(),lmax)
           clm_anom[ilev], chi2 = sh.expand.SHExpandLSQ(field_anom_mean[ilev,:,:].ravel(),lat2d.ravel(),lon2d.ravel(),lmax)
     else:
-        field_mean = np.mean(field_reorder[:ftime,:,:], axis=0)
-        field_anom_mean = np.mean(field_anom_reorder[:ftime,:,:], axis=0)
+        field_mean = np.nanmean(field_reorder[:ftime,:,:], axis=0)
+        field_anom_mean = np.nanmean(field_anom_reorder[:ftime,:,:], axis=0)
         del field_reorder, field_anom_reorder
         clm_mean, chi2 = sh.expand.SHExpandLSQ(field_mean.ravel(),lat2d.ravel(),lon2d.ravel(),lmax)
         clm_anom, chi2 = sh.expand.SHExpandLSQ(field_anom_mean.ravel(),lat2d.ravel(),lon2d.ravel(),lmax)
@@ -160,4 +190,4 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
 for ifield in np.arange(len(fields)):
     for isim in np.arange(len(simlist)):
         dasl(simlist[isim], fields[ifield][0], fields[ifield][1],
-              fields[ifield][2], recenter = fields[ifield][3])
+              fields[ifield][2], recenter = fields[ifield][3], geo = fields[ifield][4])
