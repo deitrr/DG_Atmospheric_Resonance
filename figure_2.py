@@ -48,7 +48,7 @@ crange = np.array([ [1, 3], [-470, 470],
                     [0, 1.5], [-500,500] ])
 crange_sh = np.array([ [-470,470], [-470,470], [-0.1,0.1] ])
 #cont_int = [np.arange(-400,500,100),np.arange(-40,50,10),np.arange(-400,500,100)]
-#clabel=['Tropopause pressure\n(hPa)','Precipitation\n(10$^{-7}$ m s$^{-1}$)','Convective mass flux\n(10$^{-2}$ km m$^{-2}$ s$^{-1}$)'] 
+#clabel=['Tropopause pressure\n(hPa)','Precipitation\n(10$^{-7}$ m s$^{-1}$)','Convective mass flux\n(10$^{-2}$ km m$^{-2}$ s$^{-1}$)']
 clabel = ['Pressure anomaly (Pa)']
 tlabels = ['Average anomaly', 'Diurnal mode', 'Semidiurnal mode']
 
@@ -61,34 +61,39 @@ def smoothing_lon(field,ntimes):
      field_cp[:,0] = 0.25*field_tmp[:,-1] + 0.5*field_tmp[:,0] + 0.25*field_tmp[:,1]
      field_cp[:,-1] = 0.25*field_tmp[:,-2] + 0.5*field_tmp[:,-1] + 0.25*field_tmp[:,0]
      field_tmp = field_cp.copy()
-   
+
    return field_cp
 
 for i in np.arange(len(simnames)):
 
-  #plot trop pressure
-  out_file = parent_path + simnames[i]+'/merged_hist/'+simnames[i]+'_p_anom_save.npz'
+    #plot trop pressure
+    out_file = parent_path + simnames[i]+'/merged_hist/'+simnames[i]+'_p_anom_save.npz'
 
-  arc = np.load(out_file)
-  lon = arc['lon']
-  lat = arc['lat']
-  rotrate = arc['rotrate']
-  lmax = arc['lmax']
-  lon2d, lat2d = np.meshgrid(lon,lat)
+    arc = np.load(out_file)
+    lon = arc['lon']
+    lat = arc['lat']
+    rotrate = arc['rotrate']
+    lmax = arc['lmax']
+    lon2d, lat2d = np.meshgrid(lon,lat)
 
-  #stuff for setting up new grid
-  n = 2*lmax+2
-  shlat = np.arange(-90+180/n,90+180/n,180/n)
-  shlon = np.arange(0,360,180/n)
-  shlon2d, shlat2d = np.meshgrid(shlon,shlat)
+    #stuff for setting up new grid
+    n = 2*lmax+2
+    shlat = np.arange(-90+180/n,90+180/n,180/n)
+    shlon = np.arange(0,360,180/n)
+    shlon2d, shlat2d = np.meshgrid(shlon,shlat)
 
-  field_anom_mean = arc['ps_anom_mean']
-#  field_mean = arc['ps']
-  clm_mean = arc['clm']
-#  clm_anom = arc['clm_anom']
-  print(np.max(np.abs(field_anom_mean/cscale[0])))  
+    if 'field_anom_mean' in arc:
+        field_anom_mean = arc['field_anom_mean']
+    else:
+        # in some of the files I used the name ps_anom_mean instead of field_anom_mean
+        field_anom_mean = arc['ps_anom_mean']
 
-  field_anom_mean = smoothing_lon(field_anom_mean,10)
+    #  field_mean = arc['ps']
+    clm_mean = arc['clm']
+    #  clm_anom = arc['clm_anom']
+    print(np.max(np.abs(field_anom_mean/cscale[0])))
+
+    field_anom_mean = smoothing_lon(field_anom_mean,10)
   #full field
 #  ax = fig.add_subplot(left_grid1[2*i])
 #  if i == 0:
@@ -111,33 +116,33 @@ for i in np.arange(len(simnames)):
 #  cax = fig.add_subplot(left_grid1[2*i+1])
 #  cbar = plt.colorbar(c,cax=cax)
 #  cax.tick_params(axis='y',labelsize=6)
-#  print(np.max(np.abs(field_mean/cscale[0])))  
+#  print(np.max(np.abs(field_mean/cscale[0])))
 
-  #anomaly
-  ax = fig.add_subplot(left_grid1[i])
-  if i == 0:
+    #anomaly
+    ax = fig.add_subplot(left_grid1[i])
+    if i == 0:
     ax.set_title(tlabels[0],fontsize=8)
-  m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
-  m.drawparallels([-60,-30,0,30,60],labels = [True,False,False,False], fontsize=6)
-  m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
-  c = m.pcolormesh(lon2d, lat2d, field_anom_mean/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[1][1],vmin=crange[1][0])
-  ax.set(ylabel='Latitude')
-  ax.yaxis.set_label_coords(-0.15,0.5)
-  xlim = ax.get_xlim()
-  dxlim = xlim[1] - xlim[0]
-  ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-  if i == 1:
+    m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
+    m.drawparallels([-60,-30,0,30,60],labels = [True,False,False,False], fontsize=6)
+    m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
+    c = m.pcolormesh(lon2d, lat2d, field_anom_mean/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[1][1],vmin=crange[1][0])
+    ax.set(ylabel='Latitude')
+    ax.yaxis.set_label_coords(-0.15,0.5)
+    xlim = ax.get_xlim()
+    dxlim = xlim[1] - xlim[0]
+    ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
+    if i == 1:
     ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
-  else:
+    else:
     ax.xaxis.set_ticklabels([])
-  ax.tick_params(direction='in')
-#  cax = fig.add_subplot(left_grid1[2*i+1])
-#  cbar = plt.colorbar(c,cax=cax)
-#  cax.tick_params(axis='y',labelsize=6)
-  ax.text(0.03,0.9,label[i],rotation=0,transform=ax.transAxes,fontsize=9,color='k',fontweight='bold')
+    ax.tick_params(direction='in')
+    #  cax = fig.add_subplot(left_grid1[2*i+1])
+    #  cbar = plt.colorbar(c,cax=cax)
+    #  cax.tick_params(axis='y',labelsize=6)
+    ax.text(0.03,0.9,label[i],rotation=0,transform=ax.transAxes,fontsize=9,color='k',fontweight='bold')
 
-  #spharm
-  for imode in [1,2]:
+    #spharm
+    for imode in [1,2]:
     clm_anom_cp = clm_mean.copy()
     clm_anom_cp[:,:imode,:] = 0.0
     clm_anom_cp[:,imode+1:,:] = 0.0
@@ -154,9 +159,9 @@ for i in np.arange(len(simnames)):
     m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
     c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange_sh[imode-1][1],vmin=crange_sh[imode-1][0])
-#    ax.set(ylabel='Latitude')
-#    cont = m.contour(shlon2d, shlat2d, shmap_anom/cscale[0],cont_int[imode],latlon=True,colors='k')
-#    ax.clabel(cont,cont.levels,inline=True)
+    #    ax.set(ylabel='Latitude')
+    #    cont = m.contour(shlon2d, shlat2d, shmap_anom/cscale[0],cont_int[imode],latlon=True,colors='k')
+    #    ax.clabel(cont,cont.levels,inline=True)
     print(np.max(np.abs(shmap_anom/cscale[0])))
 
     ax.yaxis.set_label_coords(-0.1,0.5)
@@ -169,15 +174,15 @@ for i in np.arange(len(simnames)):
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
 
-#    if imode == 1:
-#      cax = fig.add_subplot(cen_grid1[2*i+1])
-#    else:
+    #    if imode == 1:
+    #      cax = fig.add_subplot(cen_grid1[2*i+1])
+    #    else:
     if imode == 2:
       cax = fig.add_subplot(right_grid1[2*i+1])
       cbar = plt.colorbar(c,cax=cax)
       cax.tick_params(axis='y',labelsize=6)
 
-  cbar.set_label(clabel[0],fontsize=8)
+    cbar.set_label(clabel[0],fontsize=8)
 
 plt.savefig('figure_2.pdf')
 plt.close()

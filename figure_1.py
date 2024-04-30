@@ -37,7 +37,6 @@ simnames =[
 
 rotper = np.array([16,18,20,21,21.5,22,22.25,22.5,23,24,25,20,21,21.5,21.75,22,23,24])
 lines = np.array([0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1])
-#streamf = np.array([1.199,1.170,1.162,1.116,1.382,1.26,1.022,0.97,0.996])
 
 #create the arrays
 Ts = np.zeros(len(simnames))
@@ -95,11 +94,13 @@ for i in np.arange(len(simnames)):
   else:
     file = simpath + "_branch/merged_hist/" + simnames[i] + "_branch_p_anom_save.npz"
   arc = np.load(file)
-  #max_ind = np.where(arc['ps_anom_mean']==np.max(arc['ps_anom_mean']))
-  panom[i] = np.max(np.abs(arc['ps_anom_mean']))
-  #pdb.set_trace()
+  if 'field_anom_mean' in arc:
+      panom[i] = np.max(np.abs(arc['field_anom_mean']))
+  else:
+      # in some of the files I used the name ps_anom_mean instead of field_anom_mean
+      panom[i] = np.max(np.abs(arc['ps_anom_mean']))
   imag_dps[i] = -1*arc['clm'][1,2,2]*np.sqrt(2*15/8)
- 
+
 print(panom)
 print(rotper)
 print(ASR)
@@ -109,7 +110,7 @@ print(ASR_trop)
 plt.rcParams.update({'font.size':6})
 fig = plt.figure(figsize=(7.5,5))
 
-#Set up the plot arrangement 
+#Set up the plot arrangement
 #outer_grid = gridspec.GridSpec(2,1,wspace=0.1,hspace=0.3,left=0.065,right=0.96,bottom=0.09,top=0.96,height_ratios=(2,2))
 #row1 = gridspec.GridSpecFromSubplotSpec(1,4,subplot_spec=outer_grid[0],wspace=0.5,hspace=0.1,width_ratios=(1,1,1,1))
 #row2 = gridspec.GridSpecFromSubplotSpec(1,4,subplot_spec=outer_grid[1],wspace=0.5,hspace=0.1,width_ratios=(1,1,1,1))
@@ -147,11 +148,11 @@ ax.set(ylabel='Semidiurnal pressure anomaly (Pa)\n(imaginary component)')
 ax.tick_params(direction='in')
 ax.set_xticks([16,18,20,22,24])
 
-#next row 
+#next row
 bottom = 0.38
 width= 0.23
 
-dy = 1.2*np.max((np.max(q500[lines==0]) - np.min(q500[lines==0]), 
+dy = 1.2*np.max((np.max(q500[lines==0]) - np.min(q500[lines==0]),
              np.max(q500[lines==1]) - np.min(q500[lines==1])))*1000
 #ax = fig.add_subplot(row1[2])
 ax = fig.add_axes([0.07,bottom,width,height])
@@ -169,7 +170,7 @@ ycen = 0.5*(ax2.get_ylim()[1] + ax2.get_ylim()[0])
 ax2.set_ylim(ycen-0.5*dy,ycen+0.5*dy)
 ax2.tick_params(axis='y', labelcolor='0.4')
 
-dy = 1.2*np.max((np.max(tmq[lines==0]) - np.min(tmq[lines==0]), 
+dy = 1.2*np.max((np.max(tmq[lines==0]) - np.min(tmq[lines==0]),
              np.max(tmq[lines==1]) - np.min(tmq[lines==1])))
 #ax = fig.add_subplot(row1[3])
 ax = fig.add_axes([0.41,bottom,width,height])
@@ -185,7 +186,7 @@ ycen = 0.5*(ax2.get_ylim()[1] + ax2.get_ylim()[0])
 ax2.set_ylim(ycen-0.5*dy,ycen+0.5*dy)
 ax2.tick_params(axis='y', labelcolor='0.4')
 
-dy = 1.2*np.max((np.max(lhflx[lines==0]) - np.min(lhflx[lines==0]), 
+dy = 1.2*np.max((np.max(lhflx[lines==0]) - np.min(lhflx[lines==0]),
              np.max(lhflx[lines==1]) - np.min(lhflx[lines==1])))
 #ax = fig.add_subplot(row2[2])
 ax = fig.add_axes([0.73,bottom,width,height])
@@ -235,7 +236,7 @@ ylims = ax.get_ylim()
 ax.set_ylim((0.5*(ylims[0]+ylims[1]-dy_cwp),0.5*(ylims[0]+ylims[1]+dy_cwp)))
 ax.set_xticks([16,18,20,22,24])
 
-dy = 1.2*np.max((np.max(ASR[lines==0]) - np.min(ASR[lines==0]), 
+dy = 1.2*np.max((np.max(ASR[lines==0]) - np.min(ASR[lines==0]),
              np.max(ASR[lines==1]) - np.min(ASR[lines==1])))
 #ax = fig.add_subplot(row2[3])
 ax = fig.add_axes([0.72,bottom,width,height])
@@ -255,6 +256,3 @@ ax2.tick_params(axis='y', labelcolor='0.4')
 
 plt.savefig('figure_1.pdf')
 plt.close()
-
-
-
