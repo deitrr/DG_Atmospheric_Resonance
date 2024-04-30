@@ -139,8 +139,8 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True):
     lon2d, lat2d = np.meshgrid(lon,lat)
     lmax = np.floor(np.sqrt(len(lat)*len(lon))/2)
     if ndim == 3:
-        field_mean = np.mean(field_reorder[:ftime,ilev,:,:], axis=0)
-        field_anom_mean = np.mean(field_anom_reorder[:ftime,ilev,:,:], axis=0)
+        field_mean = np.mean(field_reorder[:ftime,:,:,:], axis=0)
+        field_anom_mean = np.mean(field_anom_reorder[:ftime,:,:,:], axis=0)
         del field_reorder, field_anom_reorder
         clm_mean = np.zeros((len(p),2,np.int(lmax+1),np.int(lmax+1)))
         clm_anom = np.zeros((len(p),2,np.int(lmax+1),np.int(lmax+1)))
