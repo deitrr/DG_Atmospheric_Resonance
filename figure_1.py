@@ -90,7 +90,7 @@ for i in np.arange(len(simnames)):
   ASR_trop[i] = si.interp1d(data['ilev'][:].squeeze(),fds-fus)(200.0)
 
   #pressure anomaly
-  if simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr' or simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr':
+  if simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr' or simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr' or simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr':
     file = simpath + "_branch2/merged_hist/" + simnames[i] + "_branch2_p_anom_save.npz"
   else:
     file = simpath + "_branch/merged_hist/" + simnames[i] + "_branch_p_anom_save.npz"
