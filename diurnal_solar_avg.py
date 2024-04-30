@@ -35,11 +35,6 @@ fields = [
           ]
 
 
-for ifield in np.arange(len(fields)):
-    for simname in simlist.keys():
-        if fields[ifield][2] == 2:
-            dasl_2D(simname, simlist[simname], fields[ifield][0], fields[ifield][1])
-
 def dasl_2D(simname, rotper, cam_field_name, out_field_name):
     #diurnal averaging about solar longitude for 2D field
     #need to have SW flux file already calculated to center the sun at long = 0
@@ -112,3 +107,9 @@ def dasl_2D(simname, rotper, cam_field_name, out_field_name):
     clm_anom, chi2 = sh.expand.SHExpandLSQ(field_anom_mean.ravel(),lat2d.ravel(),lon2d.ravel(),lmax)
 
     np.savez(out_file,lon=lon,lat=lat,rotrate=rotrate,field_anom_mean=field_anom_mean,field_mean=field_mean, clm_mean=clm_mean,clm_anom=clm_anom,lmax=lmax)
+
+
+for ifield in np.arange(len(fields)):
+    for simname in simlist.keys():
+        if fields[ifield][2] == 2:
+            dasl_2D(simname, simlist[simname], fields[ifield][0], fields[ifield][1])
