@@ -4,19 +4,31 @@ import netCDF4 as nc
 import scipy.interpolate as sint
 import pyshtools as sh
 
-globfiles1 = ['lambres_4x5_modern_24hr_ZM2.cam.h0.globmean_0031_0060.nc',
-             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr.cam.h0.globmean_0031_0060.nc']
-swfiles1 = ['lambres_4x5_modern_24hr_ZM2_branch2_QRS_save.npz',
-           'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2_QRS_save.npz']
-mffiles1 = ['lambres_4x5_modern_24hr_ZM2_branch2_CMFMC_save.npz',
-           'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch_CMFMC_save.npz']
+#change these paths to match the location of the sim_main and sim_suppl
+# download from the data repository
+sims_main = '../sims_main/'
+sims_suppl = '../sims_suppl/'
 
-globfiles2 = ['lambres_4x5_modern_22-5hr_ZM2.cam.h0.globmean_0031_0060.nc',
-             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr.cam.h0.globmean_0031_0060.nc']
-swfiles2 = ['lambres_4x5_modern_22-5hr_ZM2_branch2_QRS_save.npz',
-           'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2_QRS_save.npz']
-mffiles2 = ['lambres_4x5_modern_22-5hr_ZM2_branch2_CMFMC_save.npz',
-           'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2_CMFMC_save.npz']
+waccm_sim1 = 'lambres_4x5_modern_24hr_ZM2'
+waccm_sim2 = 'lambres_4x5_modern_22-5hr_ZM2'
+
+exo_sim1 = 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr'
+exo_sim2 = 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr'
+
+globfiles1 = [sims_suppl + waccm_sim1 + '/merged_hist/' + waccm_sim1 + '.cam.h0.globmean_0031_0060.nc',
+              sims_main + exo_sim1 + '/merged_hist/' + exo_sim1 + '.cam.h0.globmean_0031_0060.nc']
+swfiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 +'_branch2_QRS_save.npz',
+            sims_main + exo_sim1 + '_branch2/merged_hist/' + exo_sim1 +'_branch2_QRS_save.npz']
+mffiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 + '_branch2_CMFMC_save.npz',
+             sims_main + exo_sim1 + '_branch/merged_hist/' + exo_sim1 +'_branch_CMFMC_save.npz']
+
+
+globfiles2 = [sims_suppl + waccm_sim2 + '/merged_hist/' + waccm_sim2 + '.cam.h0.globmean_0031_0060.nc',
+              sims_main + exo_sim2 + '/merged_hist/' + exo_sim2 + '.cam.h0.globmean_0031_0060.nc']
+swfiles2 = [sims_suppl + waccm_sim2 + '_branch2/merged_hist/' + waccm_sim2 +'_branch2_QRS_save.npz',
+            sims_main + exo_sim2 + '_branch2/merged_hist/' + exo_sim2 + '_branch2_QRS_save.npz']
+mffiles2 = [sims_suppl + waccm_sim2 + '_branch2/merged_hist/' + waccm_sim2 +'_branch2_CMFMC_save.npz',
+            sims_main + exo_sim2 + '_branch2/merged_hist/' + exo_sim2 + '_branch2_CMFMC_save.npz']
 
 globfiles = [globfiles1, globfiles2]
 swfiles = [swfiles1,swfiles2]

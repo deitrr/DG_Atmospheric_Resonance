@@ -81,7 +81,6 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
         out_file = np.str(out_path_full / (simname + '_' + out_field_name + '_save.npz'))
 
     #now get the necessary fields
-#    z3 = data['Z3'][:]
     lat = data['lat'][:]
     lon = data['lon'][:]
     p = data['lev'][:]
@@ -104,7 +103,8 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
         del u, v, u1, V, divV, divV1
 
     elif cam_field_name == 'QRS':
-        #heating rate, converted to W / kg
+        #heating rate, converted to W / kg (CAM/WACCM) or J/day/kg (ExoCAM)
+        #code for figures 12 and 13 will correct to W/kg for ExoCAM
         field0 = data[cam_field_name][:] * sim['cp']
 
     elif cam_field_name == 'CWC':
