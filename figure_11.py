@@ -18,21 +18,23 @@ simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21-5hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch',
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch2',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr_branch',
            ]
 
-rotpers = np.array([0.6667, 0.75, 0.8333,0.875, 0.8958, 0.9167, 0.9375, 1.0, 1.04167])
+rotpers = np.array([0.6667, 0.75, 0.8333,0.875, 0.8958, 0.9167, 0.9271,
+                    0.9375, 1.0, 1.04167])
 label = ['16 hour', '18 hour', '20 hour', '21 hour', '21.5 hour', '22 hour',
-                        '22.5 hour', '23 hour', '24 hour', '25 hour']
+                '22.25 hour', '22.5 hour', '23 hour', '24 hour', '25 hour']
 xlabels=['Deep convective mass\nflux (10$^{-3}$ kg m$^{-2}$ s$^{-1}$)',
         'Deep convective heating\nrate (K day$^{-1}$)', 'Horizontal divergence\n(s$^{-1}$)']
 blues = plt.cm.Blues
 reds = plt.cm.Reds
-colors = [blues(0.1),blues(0.25),blues(0.5),blues(0.75),blues(1.0),'k',
-                            reds(1.),reds(0.75),reds(0.5),reds(0.25)]
+colors = [blues(0.1),blues(0.25),blues(0.5),blues(0.75),blues(0.88),blues(1.0),
+                        'k',reds(1.),reds(0.75),reds(0.5),reds(0.25)]
 xmax = [6.6,3.5,2.5]
 xmin = [-0.5,-6.5,-2]
 scale = [1e-3,1,1e-6]
