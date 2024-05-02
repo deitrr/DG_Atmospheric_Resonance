@@ -1,0 +1,204 @@
+#!/bin/bash -l
+#PBS -S /bin/bash
+#PBS -N merge_h0_files
+###PBS -o /home/rdeitrick/waccm_rot_sims/pbs_out/lwc_hich4.out
+#PBS -j oe
+#PBS -m ae -M rdeitrick@uvic.ca
+
+source /home/rdeitrick/anaconda3/etc/profile.d/conda.sh
+conda activate myenv
+
+python3 --version
+
+#python3 waccm_rot_sims/merge_compute_timemean.py lambres_4x5_modern_24hr_dt900 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py lambres_4x5_modern_24hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nomg1_lr_exocam_4x5_lowCH4_24hr_2xCO2 -l 59
+
+python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_20hr -l 60
+python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_20hr
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21hr
+python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-75hr -l 60
+python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-75hr
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr -l 60
+python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr
+python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_23hr -l 60
+python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_23hr
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_24hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr -l 60
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_24hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_24hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p95_lr_wcsc_4x5_o2-1perc_co2-1400_24hr -l 10
+#python3 waccm_rot_sims/merge_compute_timemean.py lambres_4x5_modern_22-5hr_ZM2 -l 60
+#python3 waccm_rot_sims/time_mean_files.py lambres_4x5_modern_22-5hr_ZM2
+#python3 waccm_rot_sims/time_mean_files.py lambres_4x5_modern_24hr_ZM2
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_24hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_24hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_24hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_21-5hr
+
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nomg1_lr_exocam_4x5_hiCH4_21-6hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py nomg1_lr_exocam_4x5_hiCH4_21-6hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nomg1_lr_exocam_4x5_hiCH4_21-7hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py nomg1_lr_exocam_4x5_hiCH4_21-7hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nomg1_lr_exocam_4x5_lowCH4_22-2hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py nomg1_lr_exocam_4x5_lowCH4_22-2hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nomg1_lr_exocam_4x5_lowCH4_22-3hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py nomg1_lr_exocam_4x5_lowCH4_22-3hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_modern_21-5hr_ZM2 -l 60
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_modern_22hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_modern_24hr_ZM2 -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_modern_21-5hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_modern_22hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_modern_24hr_ZM2 
+
+#python3 waccm_rot_sims/time_mean_files.py wcsc_1850_pop2_4x5
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_21-5hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22-5hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_24hr_ZM2 -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_21-5hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22-5hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_24hr_ZM2 -l 60
+
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_21-5hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22-5hr_ZM2 -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_24hr_ZM2 -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_21-5hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22-5hr_ZM2 
+#python3 waccm_rot_sims/time_mean_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_24hr_ZM2 
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_24hr -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_24hr
+
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_16hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_18hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr -l 60
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_24hr -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_22hr 
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_24hr 
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_16hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_18hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_4x5_ch4-30_co2-2000_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_4x5_ch4-30_co2-2000_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_4x5_ch4-30_co2-2000_22-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_4x5_ch4-30_co2-2000_23hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_4x5_ch4-30_co2-2000_24hr -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_4x5_ch4-30_co2-2000_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_4x5_ch4-30_co2-2000_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_4x5_ch4-30_co2-2000_22-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_4x5_ch4-30_co2-2000_23hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_4x5_ch4-30_co2-2000_24hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_24hr -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_24hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_24hr -l 60
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_24hr
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22-25hr -l 29
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22-5hr -l 28
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22-25hr 
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22-5hr -l 28
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_22-5hr -l 50
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch2_crf -i 61 -l 61
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2_crf -i 61 -l 61
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch2_crf -i 61 -l 61
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2_crf -i 61 -l 61
+
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_16hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_18hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21-5hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_22hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_24hr -l 60
+#python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr -l 60
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_16hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_18hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_22hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_24hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr
+
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21-5hr
+#python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr
+
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr -l 31
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr -l 30
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr -l 25
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr -l 30
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr -l 30
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr -l 31
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr -l 30
+#python3 waccm_rot_sims/merge_compute_timemean.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr -l 31
+
+#python3 waccm_rot_sims/merge_compute_timemean.py aquap_s0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr -l 10
+
+python3 waccm_rot_sims/merge_compute_timemean.py gwon_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr -i 31 -l 45
+python3 waccm_rot_sims/merge_compute_timemean.py gwon_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr -i 31 -l 40
+
+#exit

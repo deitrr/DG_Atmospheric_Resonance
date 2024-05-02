@@ -1,0 +1,129 @@
+#!/bin/bash -l
+#PBS -S /bin/bash
+#PBS -N merge_h1_solar0p9
+###PBS -o /home/rdeitrick/waccm_rot_sims/pbs_out/lwc_hich4.out
+#PBS -j oe
+#PBS -m ae -M rdeitrick@uvic.ca
+
+source /home/rdeitrick/anaconda3/etc/profile.d/conda.sh
+conda activate myenv
+
+python3 --version
+
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_21hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_21-5hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py lambres_4x5_modern_21-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py lambres_4x5_modern_22-5hr_ZM2_branch2
+#python3 waccm_rot_sims/merge_h1_files.py lambres_4x5_modern_22-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py lambres_4x5_modern_24hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py lambres_4x5_modern_24hr_ZM2_branch2
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_21-6hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_21-7hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_22hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_lowCH4_22-2hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_lowCH4_22-3hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_23hr_branch2 
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_24hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py nomg1_lr_exocam_4x5_hiCH4_25hr_branch2
+
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_modern_21-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_modern_22hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_modern_24hr_ZM2_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_21-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_22-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-369_24hr_ZM2_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_21-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_22-5hr_ZM2_branch
+#python3 waccm_rot_sims/merge_h1_files.py nspladj_lr_wcsc_4x5_o2-1perc_co2-1476_24hr_ZM2_branch
+
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_16hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_18hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr_branch -i 62 -l 62
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2
+python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch_div2
+python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch_substepoff
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2 -i 62 -l 62
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2 -i 63 -l 63
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2 -i 64 -l 64
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2 -i 65 -l 65
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 62 -l 62
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 63 -l 63
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 64 -l 64
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 65 -l 65
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py gwon_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py gwon_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_24hr_branch2
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_22-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-0_co2-5250_24hr_branch -i 62 -l 62
+#python3 waccm_rot_sims/merge_h1_files.py  solar0p9_lr_4x5_ch4-30_co2-2000_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py  solar0p9_lr_4x5_ch4-30_co2-2000_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py  solar0p9_lr_4x5_ch4-30_co2-2000_22-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-2000_co2-5250_24hr_branch
+
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_21hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-10_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21hr_branch -i 62 -l 62
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-100_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py  solar0p9_lr_4x5_ch4-30_co2-2000_23hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py  solar0p9_lr_4x5_ch4-30_co2-2000_24hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-1000_co2-5250_24hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_20hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_21-75hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_23hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-3000_co2-5250_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_19x25_ch4-30_co2-5250_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_16hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_18hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20hr_branch2
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_22hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_24hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_20-5hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21hr_branch
+#python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-50000_21-5hr_branch
+
+#python3 waccm_rot_sims/merge_h1_files.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr_branch -i 32 -l 32
+#python3 waccm_rot_sims/merge_h1_files.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch -i 31 -l 31
+#python3 waccm_rot_sims/merge_h1_files.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch -i 26 -l 26
+#python3 waccm_rot_sims/merge_h1_files.py surfp05_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 31 -l 31
+#python3 waccm_rot_sims/merge_h1_files.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr_branch -i 31 -l 31
+#python3 waccm_rot_sims/merge_h1_files.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch -i 32 -l 32
+#python3 waccm_rot_sims/merge_h1_files.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch -i 31 -l 31
+#python3 waccm_rot_sims/merge_h1_files.py surfp2_solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch -i 32 -l 32
+
+#exit
+
