@@ -23,6 +23,12 @@ simlist = [
                 'rotper': 1.0, 'cp': 1034.93},
           ]
 
+#these lists tell what quantities to use in averaging process
+#[name in CAM (some exceptions to this),
+# desired output name (need to match plot code),
+# dimensions (2 or 3),
+# whether to recenter solar longitude using FSDS output (True or False),
+# geography setting ('all, 'ocean', or 'land')]
 fields = [
           ['FSDS','fsds_phase',2, False, 'all'],
           ['PS', 'p_anom', 2, True, 'all'],
@@ -35,6 +41,10 @@ fields = [
           ['CMFMC', 'CMFMC', 3, True, 'all'],
           ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'],
           ['ZMDT', 'ZMDT', 3, True, 'all'],
+          ['T', 'T', 3, True, 'all'],
+          ['RELHUM', 'RELHUM', 3, True, 'all'],
+          ['CWC', 'CWC', 3, True, 'all'],
+          ['Q', 'log_Q', 3, True, 'all']
           ]
 
 
@@ -74,8 +84,8 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     lon = data['lon'][:]
     p = data['lev'][:]
 
+    #some quantities need to be computed or modified in some why, handle these here
     if cam_field_name == 'DIVV':
-        #special case, need to handle explicitly
         ftime = len(data['time'][:])
 
         field0 = np.zeros_like(data['U'][:])
@@ -92,7 +102,15 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
         del u, v, u1, V, divV, divV1
 
     elif cam_field_name == 'QRS':
+        #heating rate, converted to W / kg
         field0 = data[cam_field_name][:] * sim['cp']
+
+    elif cam_field_name == 'CWC':
+        #total cloud water content, in log space
+        field0 = np.log10(data['IWC'][:] + data['LWC'][:])
+
+    elif cam_field_name == 'Q':
+        field0 = np.log10(data['Q'][:])
 
     else:
         field0 = data[cam_field_name][:]
