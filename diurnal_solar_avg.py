@@ -19,7 +19,7 @@ output_path = '../sims_main_new/'
 #list of simulations here, with rotperiod (units of modern day), and heat capacity
 simlist = [
            {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
-               'rotper': 0.9167, 'cp': 1034.93},
+                'rotper': 0.9167, 'cp': 1034.93},
            {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
                 'rotper': 1.0, 'cp': 1034.93},
           ]
@@ -71,6 +71,7 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     path_merge = pathlib.Path(path) / files_list[0]
 
     print('Reading file %s...'%path_merge)
+    print('Processing %s...'%out_field_name)
     data = nc.Dataset(path_merge,'r')
 
     #make sure output path exists
