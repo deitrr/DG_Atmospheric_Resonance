@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import netCDF4 as nc
 import scipy.interpolate as sint
 import pyshtools as sh
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change these paths to match the location of the sim_main and sim_suppl
 # download from the data repository
@@ -231,5 +233,5 @@ ax.legend(loc='best',fontsize=6)
 axes[0][2].legend(loc='best',fontsize=6)
 
 plt.tight_layout()
-plt.savefig('vse_compare1_combined.pdf')
+plt.savefig('figure_12.pdf')
 plt.close()
