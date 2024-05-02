@@ -152,9 +152,6 @@ for ilevel in np.arange(2):
       clm_anom_cp[:,:,imode+1:] = 0.0
       shmap_anom = np.real(sh.expand.MakeGridDH(clm_anom_cp,sampling=2))
 
-      print('SH peaks (mean) = ',np.max(shmap_mean),np.min(shmap_mean))
-      print('SH peaks (anomaly) = ',np.max(shmap_anom),np.min(shmap_anom))
-
       ax = fig.add_subplot(inner_grid[4*(i+1) + imode+1])
       m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection='cea')
       m.drawparallels([-45,0,45],labels = [True,False,False,False], fontsize=6)

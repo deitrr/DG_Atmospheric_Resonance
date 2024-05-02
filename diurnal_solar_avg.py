@@ -33,21 +33,27 @@ simlist = [
 # NOTE that 3-D fields use a lot of memory! (20 GB)
 # ALSO, running all of these at once will take a very long time
 fields = [
-#          ['FSDS','fsds_phase',2, False, 'all'],
-#          ['PS', 'p_anom', 2, True, 'all'],
-#          ['TGCLDCWP', 'CWP', 2, True, 'all'],
-#          ['PRECT', 'PRECT', 2, True, 'all'],
-#          ['PRECT', 'PRECT', 2, True, 'land'],
-#          ['PRECT', 'PRECT', 2, True, 'ocean'],
-#          ['DIVV', 'DIVV', 3, True, 'all'], #special case, need to calc from U and V
-          ['QRS', 'QRS', 3, True, 'all'],   #special case, convert units
-          ['CMFMC', 'CMFMC', 3, True, 'all'],
-          ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'],
-          ['ZMDT', 'ZMDT', 3, True, 'all'],
-          ['T', 'T', 3, True, 'all'],
-          ['RELHUM', 'RELHUM', 3, True, 'all'],
-          ['CWC', 'CWC', 3, True, 'all'],   #special case, use IWC + LWC and take log
-          ['Q', 'log_Q', 3, True, 'all']    #special case, take log of Q
+#          ['FSDS','fsds_phase',2, False, 'all'],    #surface SW flux down
+#          ['PS', 'p_anom', 2, True, 'all'],         #surface pressure
+#          ['TGCLDCWP', 'CWP', 2, True, 'all'],      #cloud water path at surface
+#          ['PRECT', 'PRECT', 2, True, 'all'],       #total precip
+#          ['PRECT', 'PRECT', 2, True, 'land'],      #total precip over land
+#          ['PRECT', 'PRECT', 2, True, 'ocean'],     #total precip over ocean
+#          ['DIVV', 'DIVV', 3, True, 'all'],         #horizontal divergence
+                                                    #special case, need to calc from U and V
+#          ['QRS', 'QRS', 3, True, 'all'],           #SW heating rate
+                                                    #special case, convert units
+#          ['CMFMC', 'CMFMC', 3, True, 'all'],       #total convective mass flux
+#          ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'], #deep convective mass flux
+#          ['ZMDT', 'ZMDT', 3, True, 'all'],         #deep convective heating rate
+#          ['T', 'T', 3, True, 'all'],               #temperature
+#          ['RELHUM', 'RELHUM', 3, True, 'all'],     #relative humidity
+#          ['CWC', 'CWC', 3, True, 'all'],           #cloud water content (density)
+                                                    #special case, use IWC + LWC and take log
+#          ['Q', 'log_Q', 3, True, 'all']            #specific humidity
+                                                    #special case, take log of Q
+          ['CMFSH','CMFSH', 3, True, 'all']         #shallow convective mass flux
+                                                    #special case, need to calculate from CMFMC and DZM
           ]
 
 
@@ -115,6 +121,10 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
 
     elif cam_field_name == 'Q':
         field0 = np.log10(data['Q'][:])
+
+    elif cam_field_name == 'CMFSH':
+        #CMFMC is the total shallow + deep mass flux
+        field0 = data['CMFMC'][:] - data['CMFMCDZM'][:]
 
     else:
         field0 = data[cam_field_name][:]
