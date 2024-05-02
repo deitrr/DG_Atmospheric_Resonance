@@ -112,19 +112,19 @@ for i in np.arange(len(simnames)):
         c = m.pcolormesh(shlon2d, shlat2d, shmap, cmap=cmap,latlon='True',
                         rasterized=True,vmax=cscale[imode],vmin=-1*cscale[imode])
 
-    if i == len(simnames)-1:
-      xlim = ax.get_xlim()
-      dxlim = xlim[1] - xlim[0]
-      ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
-      ax.tick_params(direction='in')
+        if i == len(simnames)-1:
+          xlim = ax.get_xlim()
+          dxlim = xlim[1] - xlim[0]
+          ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
+          ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+          ax.tick_params(direction='in')
 
-    if i == 0:
-      cax = fig.add_subplot(inner_grid[imode])
-      cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
-      cax.xaxis.set_ticks_position('top')
-      cax.xaxis.set_label_position('top')
-      cbar.set_label(clabels[imode],fontsize=8)
+        if i == 0:
+          cax = fig.add_subplot(inner_grid[imode])
+          cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
+          cax.xaxis.set_ticks_position('top')
+          cax.xaxis.set_label_position('top')
+          cbar.set_label(clabels[imode],fontsize=8)
 
 plt.savefig('figures/figure_6.pdf')
 plt.close()

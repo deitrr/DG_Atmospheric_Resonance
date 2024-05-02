@@ -117,31 +117,31 @@ for i in np.arange(len(simnames)):
         clm_anom_cp[:,:,:imode] = 0.0
         clm_anom_cp[:,:,imode+1:] = 0.0
         shmap_anom = np.real(sh.expand.MakeGridDH(clm_anom_cp,sampling=2))
-    if imode == 1:
-        ax = fig.add_subplot(cen_grid1[i])
-    else:
-        ax = fig.add_subplot(right_grid1[2*i])
-    if i == 0:
-        ax.set_title(tlabels[imode],fontsize=8)
-    m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
-    m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
-    m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
-    c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange_sh[imode-1][1],vmin=crange_sh[imode-1][0])
+        if imode == 1:
+            ax = fig.add_subplot(cen_grid1[i])
+        else:
+            ax = fig.add_subplot(right_grid1[2*i])
+        if i == 0:
+            ax.set_title(tlabels[imode],fontsize=8)
+        m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
+        m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
+        m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
+        c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange_sh[imode-1][1],vmin=crange_sh[imode-1][0])
 
-    ax.yaxis.set_label_coords(-0.1,0.5)
-    xlim = ax.get_xlim()
-    dxlim = xlim[1] - xlim[0]
-    ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-    if i == 1:
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
-    else:
-      ax.xaxis.set_ticklabels([])
-    ax.tick_params(direction='in')
+        ax.yaxis.set_label_coords(-0.1,0.5)
+        xlim = ax.get_xlim()
+        dxlim = xlim[1] - xlim[0]
+        ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
+        if i == 1:
+          ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+        else:
+          ax.xaxis.set_ticklabels([])
+        ax.tick_params(direction='in')
 
-    if imode == 2:
-      cax = fig.add_subplot(right_grid1[2*i+1])
-      cbar = plt.colorbar(c,cax=cax)
-      cax.tick_params(axis='y',labelsize=6)
+        if imode == 2:
+          cax = fig.add_subplot(right_grid1[2*i+1])
+          cbar = plt.colorbar(c,cax=cax)
+          cax.tick_params(axis='y',labelsize=6)
 
     cbar.set_label(clabel[0],fontsize=8)
 
