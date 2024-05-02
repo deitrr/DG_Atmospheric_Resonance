@@ -179,7 +179,7 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     if geo == 'land':
         #quick and dirty way to mask ocean areas
         field_mean = field_reorder * landfrac_reorder
-        field_meanlandfrac_reorder==0] = np.nan
+        field_mean[landfrac_reorder==0] = np.nan
         field_anom_mean = field_anom_reorder * landfrac_reorder
         field_anom_mean[landfrac_reorder==0] = np.nan
         clm_mean = np.zeros((2,np.int(lmax+1),np.int(lmax+1)))
