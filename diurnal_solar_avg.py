@@ -33,13 +33,13 @@ simlist = [
 # NOTE that 3-D fields use a lot of memory! (20 GB)
 # ALSO, running all of these at once will take a very long time
 fields = [
-          ['FSDS','fsds_phase',2, False, 'all'],
-          ['PS', 'p_anom', 2, True, 'all'],
-          ['TGCLDCWP', 'CWP', 2, True, 'all'],
-          ['PRECT', 'PRECT', 2, True, 'all'],
-          ['PRECT', 'PRECT', 2, True, 'land'],
-          ['PRECT', 'PRECT', 2, True, 'ocean'],
-          ['DIVV', 'DIVV', 3, True, 'all'], #special case, need to calc from U and V
+#          ['FSDS','fsds_phase',2, False, 'all'],
+#          ['PS', 'p_anom', 2, True, 'all'],
+#          ['TGCLDCWP', 'CWP', 2, True, 'all'],
+#          ['PRECT', 'PRECT', 2, True, 'all'],
+#          ['PRECT', 'PRECT', 2, True, 'land'],
+#          ['PRECT', 'PRECT', 2, True, 'ocean'],
+#          ['DIVV', 'DIVV', 3, True, 'all'], #special case, need to calc from U and V
           ['QRS', 'QRS', 3, True, 'all'],   #special case, convert units
           ['CMFMC', 'CMFMC', 3, True, 'all'],
           ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'],
@@ -65,6 +65,7 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     path_merge = pathlib.Path(path) / files_list[0]
 
     print('Reading file %s...'%path_merge)
+    print('Processing %s...'%out_field_name)
     data = nc.Dataset(path_merge,'r')
 
     #make sure output path exists
@@ -179,7 +180,7 @@ def dasl(sim, cam_field_name, out_field_name, ndim, recenter=True, geo='all'):
     if geo == 'land':
         #quick and dirty way to mask ocean areas
         field_mean = field_reorder * landfrac_reorder
-        field_meanlandfrac_reorder==0] = np.nan
+        field_mean[landfrac_reorder==0] = np.nan
         field_anom_mean = field_anom_reorder * landfrac_reorder
         field_anom_mean[landfrac_reorder==0] = np.nan
         clm_mean = np.zeros((2,np.int(lmax+1),np.int(lmax+1)))
