@@ -1,20 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
-import pdb
 import pathlib
 import warnings
-from mpl_toolkits.basemap import Basemap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+#change these paths to match the location of the sim_main and sim_suppl
+# download from the data repository
 parent_path = '../sims_main/'
 suppl_path = '../sims_suppl/'
 
+#list of simulations to put on this plot (30 year averages)
+#yes, this is a big mess
 simnamesT = [
             'lr_cam4_4x5_modern_16hr', #0
             'lr_cam4_4x5_modern_18hr',
@@ -106,7 +106,7 @@ simnamesT = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr', #87
             ] #88
 
-
+#list of simulations to put on this plot (diurnally averaged around solar longitude)
 simnames = [
             'lr_cam4_4x5_modern_16hr_branch', #0
             'lr_cam4_4x5_modern_18hr_branch',
@@ -198,6 +198,7 @@ simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch_div2' #87
             ]
 
+#list of rotation periods
 rotpers = np.array([
                     0.6667, 0.75, 0.8333, 0.875, 0.9167, 0.9583, 1.0, 1.04167,
                     0.8958, 0.9167, 0.9375, 1.0,
@@ -219,24 +220,27 @@ rotpers = np.array([
   ])
 
 cmap = plt.cm.seismic
+
+#these lists determine how the simulations get sorted and placed on the plot
 sets = [0, 8, 12, 16, 20, 21, 31, 42, 44, 48, 59, 63, 65, 67, 74, 79, 87, 88]
 rows = [0, 0, 0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 1]
-#colors = ['deepskyblue','darkblue', 'springgreen', 'darkgreen','darkred', 'purple', 'magenta', 'red', 'k', 'orange', '0.3','0.5', '0.7', 'lightcoral', 'darkred']
-#colors = ['0.5', '0.5', '0.7', '0.7', 'magenta', 'gold', cmap(1.0), cmap(0.2), cmap(0.35), 'k', cmap(0.45), cmap(0.55), cmap(0.75), 'darkorange', 'k', 'k']
-colors = [cmap(0.0), cmap(0.1), cmap(0.3), cmap(0.4), cmap(0.55),cmap(0.7),cmap(0.9), cmap(0.2), cmap(0.3), 'k', cmap(0.4), cmap(0.55), cmap(0.65),'0.3',cmap(0.75),cmap(0.9), 'gold']
-#labels = ['WACCM modern', 'CAM4 modern', 'ExoCAM 3000 ppm CH$_4$', 'ExoCAM 0.8 ppm CH$_4$', 'WACCM modern, POP', 'WACCM low O$_3$',
-#	  'WACCM low O$_3$, 4x CO$_2$', 'ExoCAM 30 pmm CH$_4$, 0.9 S$_0$', 'ExoCAM 0 ppm CH$_4$, 0.9 S$_0$',
-#           'ExoCAM 30 ppm CH$_4$, 0.9 S$_0$\n 2000 ppm CO$_2$','ExoCAM 1000 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 2000 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 3000 ppm CH$_4$, 0.9 S$_0$',
-#          'ExoCAM 10 ppm CH$_4$, 0.9 S$_0$', 'ExoCAM 100 ppm CH$_4$, 0.9 S$_0$']
-labels = ['CAM4', 'WACCM', 'WACCM, low O$_3$', 'WACCM, low O$_3$, 4x CO$_2$', 'WACCM, POP',
-            'ExoCAM, 0.8 ppm CH$_4$','ExoCAM, 3000 ppm CH$_4$', 'ExoCAM, 0 ppm CH$_4$', 'ExoCAM, 10 ppm CH$_4$',
-            'ExoCAM, 30 pmm CH$_4$', 'ExoCAM, 100 ppm CH$_4$', 'ExoCAM, 1000 ppm CH$_4$',
-            'ExoCAM, 2000 ppm CH$_4$', 'ExoCAM, 3000 ppm CH$_4$', 'ExoCAM, 30 ppm CH$_4$,\n 2000 ppm CO$_2$',
-            'ExoCAM, 30 ppm CH$_4$,\n 50000 ppm CO$_2$', 'ExoCAM, 30 pmm CH$_4$,\n2nd-order div.-damping']
-#markers = ['*', 's', '*', 's', '*', 's', 's', 's', 's', 's', 's', 's', 's', 's', '*', '^']
-#ls = ['--', '-', '--', '-', 'None', '-', '-', 'None', '-', '-', '-', 'None', 'None', '-', '--', ':']
-markers = ['*', '*', '*', '*', '*', 's', 's', 's', 's', 's', 's', 's', 's', '^', 's', 's','*']
-ls = [':', ':', ':', ':', 'None', ':', ':', 'None', ':', '-', ':', 'None', 'None', '--', ':', ':','None']
+
+#these lists determine how each set of simulations is displayed
+colors = [cmap(0.0), cmap(0.1), cmap(0.3), cmap(0.4), cmap(0.55),cmap(0.7),
+          cmap(0.9), cmap(0.2), cmap(0.3), 'k', cmap(0.4), cmap(0.55),
+          cmap(0.65),'0.3',cmap(0.75),cmap(0.9), 'gold']
+labels = ['CAM4', 'WACCM', 'WACCM, low O$_3$', 'WACCM, low O$_3$, 4x CO$_2$',
+            'WACCM, POP', 'ExoCAM, 0.8 ppm CH$_4$','ExoCAM, 3000 ppm CH$_4$',
+            'ExoCAM, 0 ppm CH$_4$', 'ExoCAM, 10 ppm CH$_4$',
+            'ExoCAM, 30 pmm CH$_4$', 'ExoCAM, 100 ppm CH$_4$',
+            'ExoCAM, 1000 ppm CH$_4$','ExoCAM, 2000 ppm CH$_4$',
+            'ExoCAM, 3000 ppm CH$_4$', 'ExoCAM, 30 ppm CH$_4$,\n 2000 ppm CO$_2$',
+            'ExoCAM, 30 ppm CH$_4$,\n 50000 ppm CO$_2$',
+            'ExoCAM, 30 pmm CH$_4$,\n2nd-order div.-damping']
+markers = ['*', '*', '*', '*', '*', 's', 's', 's', 's', 's', 's', 's', 's',
+            '^', 's', 's','*']
+ls = [':', ':', ':', ':', 'None', ':', ':', 'None', ':', '-', ':', 'None',
+            'None', '--', ':', ':','None']
 
 dp22 = np.zeros_like(rotpers)
 p_anom_amp = np.zeros_like(rotpers)
@@ -290,12 +294,14 @@ for i in np.arange(len(simnames)):
     data = nc.Dataset(file,'r')
     Ts[i] = data['TS'][:].squeeze()
 
-#fig, axes = plt.subplots(ncols=2,nrows=1,figsize=(7.5,6))
 fig = plt.figure(figsize=(7.5,6))
 
-outer_grid = gridspec.GridSpec(2,1,wspace=0.2,hspace=0.3,left=0.08,right=0.8,bottom=0.1,top=0.98,height_ratios=(2,2))
-upper_grid = gridspec.GridSpecFromSubplotSpec(1,2,subplot_spec=outer_grid[0],wspace=0.17,hspace=0.1,width_ratios=(1,1))
-lower_grid = gridspec.GridSpecFromSubplotSpec(1,2,subplot_spec=outer_grid[1],wspace=0.17,hspace=0.1,width_ratios=(1,1))
+outer_grid = gridspec.GridSpec(2,1,wspace=0.2,hspace=0.3,left=0.08,right=0.8,
+                                bottom=0.1,top=0.98,height_ratios=(2,2))
+upper_grid = gridspec.GridSpecFromSubplotSpec(1,2,subplot_spec=outer_grid[0],
+                                    wspace=0.17,hspace=0.1,width_ratios=(1,1))
+lower_grid = gridspec.GridSpecFromSubplotSpec(1,2,subplot_spec=outer_grid[1],
+                                    wspace=0.17,hspace=0.1,width_ratios=(1,1))
 
 ax1 = fig.add_subplot(upper_grid[0])
 ax2 = fig.add_subplot(upper_grid[1])
@@ -308,7 +314,6 @@ labels2 = []
 labels4 = []
 for iset in np.arange(len(sets)-1):
 
-#  if labels[iset] == 'ExoCAM, 30 pmm CH$_4$':
   if sets[iset] == 48 or sets[iset] == 67:
     lw = 2
     zorder = 100
@@ -333,13 +338,6 @@ for iset in np.arange(len(sets)-1):
     lines4.append(line)
     labels4.append(labels[iset])
 
-#  ax = axes[1][0]
- # ax.plot(rotpers[sets[iset]:sets[iset+1]]*24, Ts[sets[iset]:sets[iset+1]], marker=markers[iset], color=colors[iset], linestyle=ls[iset], label=labels[iset], ms=4,lw=1)
-
-  #ax = axes[1][0]
-  #ax.plot(p_anom_amp[sets[iset]:sets[iset+1]], (Ts[sets[iset]:sets[iset+1]]),marker=markers[iset], color=colors[iset], label=labels[iset],ls='None')
-#  pdb.set_trace()
-
   if iset != len(sets)-2:
     print(iset)
     print(simnames[reference_index[iset]])
@@ -353,24 +351,6 @@ for iset in np.arange(len(sets)-1):
 ax1.set_xlabel('Length of day (hours)')
 ax1.set_ylabel('Semidiurnal pressure amplitude (Pa)')
 ax1.set(ylim = (0,400))
-#axes[1][0].set_xlabel('Rotation period (hours)')
-#axes[1][0].set_ylabel('Global mean surface temperature (K)')
-#axes[0][0].legend(fontsize=6,bbox_to_anchor=(1.05,1))
-
-#ax = fig.add_subplot(upper_grid[0])
-#ax.set_ylim(285,300)
-#ax.legend(lines,labels,loc='upper center',fontsize=8,handlelength=5,ncols=2)
-#ax.get_xaxis().set_visible(False)
-#ax.get_yaxis().set_visible(False)
-#ax.axis('off')
-
-#axes[1][0].get_xaxis().set_visible(False)
-#axes[1][0].get_yaxis().set_visible(False)
-#axes[1][0].axis('off')
-#axes[0][1].set_ylim(285,325)
-#axes[1][0].set_ylabel('Global mean surface temperature (K)')
-#axes[1][0].set_xlabel('Semidiurnal pressure amplitude (Pa)')
-
 ax2.set_ylabel('$T_{\mathrm{surf}} - T_{\mathrm{surf,24hr}}$ (K)')
 ax2.set_xlabel('Semidiurnal pressure amplitude (Pa)')
 ax2.hlines(0.0,0,400,colors='k',linestyles=':')
@@ -391,6 +371,6 @@ ax4.set_xlim(0,400)
 ax4.set(ylim = (-0.7,4.1))
 ax4.legend(lines4,labels4,loc='best',bbox_to_anchor=(1.,0.3,0.2,0.5),fontsize=6,handlelength=3,ncols=1)
 ax4.text(410, 3.5,'S = 0.9 S$_0$\n simulations',fontsize=10)
-#plt.tight_layout()
+
 plt.savefig('figure_3.pdf')
 plt.close()

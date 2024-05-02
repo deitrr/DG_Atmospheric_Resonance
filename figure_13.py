@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
 import scipy.interpolate as sint
-import pdb
-import scipy.integrate as intg
 import pyshtools as sh
 
 globfiles1 = ['lambres_4x5_modern_24hr_ZM2.cam.h0.globmean_0031_0060.nc',

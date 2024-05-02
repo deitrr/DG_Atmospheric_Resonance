@@ -1,42 +1,47 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
-import pdb
 import pathlib
 import warnings
 from mpl_toolkits.basemap import Basemap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-
+#change this path to match the location of the sim_main download from the
+#data repository
 parent_path = '../sims_main/'
 
 simnames = [
-#            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch'
            ]
 
-#label = ['22 hr', '24 hr']
 label = ['22.25 hr', '24 hr']
 
 fig = plt.figure(figsize=(7.5,9))
-proj = 'cea'  #'cea', 'eck4', 'cyl'
+proj = 'cea'  #cylindrical equal area projection
 
-outer_grid = gridspec.GridSpec(4,2,wspace=0.15,hspace=0.15,left=0.06,right=0.88,bottom=0.03,top=0.97,width_ratios=(16,31))
+outer_grid = gridspec.GridSpec(4,2,wspace=0.15,hspace=0.15,left=0.06,right=0.88,
+                                    bottom=0.03,top=0.97,width_ratios=(16,31))
 
-left_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,0],wspace=0.1,hspace=0.1,width_ratios=(15,1))
-right_grid1 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[0,1],wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
-left_grid2 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[1,0],wspace=0.1,hspace=0.1,width_ratios=(15,1))
-right_grid2 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[1,1],wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
-left_grid3 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[2,0],wspace=0.1,hspace=0.1,width_ratios=(15,1))
-right_grid3 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[2,1],wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
-left_grid4 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[3,0],wspace=0.1,hspace=0.1,width_ratios=(15,1))
-right_grid4 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[3,1],wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+left_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,0],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+right_grid1 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[0,1],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+left_grid2 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[1,0],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+right_grid2 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[1,1],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+left_grid3 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[2,0],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+right_grid3 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[2,1],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+left_grid4 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[3,0],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+right_grid4 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[3,1],
+                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
 
 levs = [26,39]
 imode = 2
@@ -50,7 +55,7 @@ crange = np.array([ [-2.1, 2.1], [-0.9, 0.9],
 clabel=[r'$\nabla\cdot\vec{v}$'+' (10$^{-6}$ s$^{-1}$)\nat 200 hPa',
         r'$\nabla\cdot\vec{v}$'+' (10$^{-6}$ s$^{-1}$)\nat 1000 hPa',
         'Cloud water path\n(kg m$^{-2}$)',
-        'Precipitation\n(10$^{-7}$ m s$^{-1}$)'] 
+        'Precipitation\n(10$^{-7}$ m s$^{-1}$)']
 
 overplot = False
 overc = [ [ [-0.6,-0.3,0,0.3,0.6], [-0.4,-0.2,0.,0.2,0.4] ],
@@ -60,7 +65,7 @@ overc = [ [ [-0.6,-0.3,0,0.3,0.6], [-0.4,-0.2,0.,0.2,0.4] ],
           [ [-0.04,-0.02,0,0.02,0.04], [-0.02,-0.01,0,0.01,0.02] ],
           [ [-0.02,-0.01,0,0.01,0.02], [-0.0024,-0.0012,0,0.0012,0.0024] ],
           [ [-0.2,-0.1,0,0.1,0.2], [-0.05,-0.025,0,0.025,0.05] ],
-          [ [-0.08,-0.04,0,0.04,0.08], [-0.03,-0.015,0,0.015,0.03] ] ] 
+          [ [-0.08,-0.04,0,0.04,0.08], [-0.03,-0.015,0,0.015,0.03] ] ]
 overfmt = [ [ '%.1f', '%.1f' ],
             [ '%.2f', '%.2f' ],
             [ '%.2f', '%.2f' ],
@@ -68,10 +73,9 @@ overfmt = [ [ '%.1f', '%.1f' ],
             [ '%.2f', '%.2f' ],
             [ '%.2f', '%.4f' ],
             [ '%.2f', '%.3f' ],
-            [ '%.2f', '%.3f' ] ] 
+            [ '%.2f', '%.3f' ] ]
 
 def smoothing_lon(field,ntimes):
-#   print("smoothing")
    field_tmp = field.copy()
    field_cp = np.zeros_like(field)
    for i in np.arange(ntimes):
@@ -79,7 +83,7 @@ def smoothing_lon(field,ntimes):
      field_cp[:,0] = 0.25*field_tmp[:,-1] + 0.5*field_tmp[:,0] + 0.25*field_tmp[:,1]
      field_cp[:,-1] = 0.25*field_tmp[:,-2] + 0.5*field_tmp[:,-1] + 0.25*field_tmp[:,0]
      field_tmp = field_cp.copy()
-   
+
    return field_cp
 
 
@@ -135,10 +139,9 @@ for i in np.arange(len(simnames)):
     ax.text(0.02,0.88,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='k',fontweight='bold')
     if j == 0:
       cax = fig.add_subplot(left_grid1[2*i+1])
-    else: 
+    else:
       cax = fig.add_subplot(left_grid2[2*i+1])
     cbar = plt.colorbar(c,cax=cax)
-    print(simnames[i],' full, DIVV ',np.max(np.abs(field_mean/cscale[j])))  
 
     #anomaly
     if j == 0:
@@ -151,8 +154,7 @@ for i in np.arange(len(simnames)):
     m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
     c = m.pcolormesh(lon2d, lat2d, field_anom_mean/cscale[j], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[2*j+1][1],vmin=crange[2*j+1][0])
-#    ax.set(ylabel='Latitude')
-    if overplot: 
+    if overplot:
       #overplot contours
       #OMFG this is so annoying
       x, y = m(lon2d,lat2d)
@@ -170,9 +172,7 @@ for i in np.arange(len(simnames)):
     else:
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
- #   cax = fig.add_subplot(right_grid[3*i+6*j+1])
- #   cbar = plt.colorbar(c,cax=cax)
-    print(simnames[i],' anomaly, DIVV ',np.max(np.abs(field_anom_mean/cscale[j])))  
+
 
     #spharm
     clm_anom_cp = clm_mean.copy()
@@ -191,7 +191,6 @@ for i in np.arange(len(simnames)):
     m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
     c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[j], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[2*j+1][1],vmin=crange[2*j+1][0])
-#    ax.set(ylabel='Latitude')
     if overplot:
       x, y = m(shlon2d,shlat2d)
       spliti = np.argmin(x[0])
@@ -246,7 +245,6 @@ for i in np.arange(len(simnames)):
   ax.text(0.02,0.88,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='w',fontweight='bold')
   cax = fig.add_subplot(left_grid3[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  print(simnames[i],' full, CWP ', np.max(np.abs(field_mean/cscale[2])))  
 
 
   ax = fig.add_subplot(right_grid3[3*i])
@@ -255,7 +253,7 @@ for i in np.arange(len(simnames)):
   m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
   c = m.pcolormesh(lon2d, lat2d, field_anom_mean/cscale[2], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[5][1],vmin=crange[5][0])
   #ax.set(ylabel='Latitude')
-  if overplot: 
+  if overplot:
     #overplot contours
     #OMFG this is so annoying
     x, y = m(lon2d,lat2d)
@@ -273,9 +271,6 @@ for i in np.arange(len(simnames)):
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
-#  cax = fig.add_subplot(right_grid[12+3*i+1])
-#  cbar = plt.colorbar(c,cax=cax)
-  print(simnames[i],' anomaly, CWP ', np.max(np.abs(field_anom_mean/cscale[2])))  
 
   #spharm
   clm_anom_cp = clm_mean.copy()
@@ -289,7 +284,6 @@ for i in np.arange(len(simnames)):
   m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
   m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
   c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[2], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[5][1],vmin=crange[5][0])
-#    ax.set(ylabel='Latitude')
   if overplot:
     x, y = m(shlon2d,shlat2d)
     spliti = np.argmin(x[0])
@@ -355,15 +349,13 @@ for i in np.arange(len(simnames)):
   cax = fig.add_subplot(left_grid4[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
   cax.tick_params(axis='y')
-  print(simnames[i],'full, PRECT', np.min(np.abs(field_mean/cscale[3])), np.max(np.abs(field_mean/cscale[3])))  
 
   ax = fig.add_subplot(right_grid4[3*i])
   m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
   m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
   m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
   c = m.pcolormesh(lon2d, lat2d, field_anom_mean/cscale[3], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange[7][1],vmin=crange[7][0])
-  #ax.set(ylabel='Latitude')
-  if overplot: 
+  if overplot:
     #overplot contours
     #OMFG this is so annoying
     x, y = m(lon2d,lat2d)
@@ -381,10 +373,7 @@ for i in np.arange(len(simnames)):
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
-#  cax = fig.add_subplot(right_grid4[3*i+1])
-#  cbar = plt.colorbar(c,cax=cax)
-#  cax.tick_params(axis='y',labelsize=6)
-  print(simnames[i],'anomaly, PRECT',np.max(np.abs(field_anom_mean/cscale[3])))
+
 
   #spharm
   for imode in [2,]:
@@ -408,7 +397,6 @@ for i in np.arange(len(simnames)):
       shmap_tmp = np.hstack([shmap_anom[:,spliti:],shmap_anom[:,:spliti]])
       cline = m.contour(xtmp, y, shmap_tmp/cscale[3], overc[6+i][1], colors='k', linewidths=1)
       ax.clabel(cline,inline=True,fontsize=6,fmt=overfmt[6+i][1])
-#    ax.set(ylabel='Latitude')
     ax.yaxis.set_label_coords(-0.1,0.5)
     ax.xaxis.set_ticks([-90,0,90])
     xlim = ax.get_xlim()

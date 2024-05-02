@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import netCDF4 as nc
 import scipy.interpolate as sint
-import pdb
-import scipy.integrate as intg
 import pyshtools as sh
 
 

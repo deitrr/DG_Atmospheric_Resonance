@@ -12,6 +12,8 @@ import matplotlib.gridspec as gridspec
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+#change this path to match the location of the sim_main download from the
+#data repository
 parent_path = '../sims_main/'
 
 simnames = [
@@ -68,8 +70,8 @@ simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch2',
-            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2', 
-            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr_branch', 
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr_branch',
             ]
 
 #rotpers = np.array([0.8333, 0.8542, 0.875, 0.8958,
@@ -119,7 +121,7 @@ def smoothing_lon(field,ntimes):
      field_cp[:,0] = 0.25*field_tmp[:,-1] + 0.5*field_tmp[:,0] + 0.25*field_tmp[:,1]
      field_cp[:,-1] = 0.25*field_tmp[:,-2] + 0.5*field_tmp[:,-1] + 0.25*field_tmp[:,0]
      field_tmp = field_cp.copy()
-   
+
    return field_cp
 
 for ilevel in np.arange(2):
@@ -132,7 +134,7 @@ for ilevel in np.arange(2):
     out_file = parent_path + simnames[i]+'/merged_hist/'+simnames[i]+'_'+field+'_save.npz'
     print(simnames[i])
 
-    if not pathlib.Path(out_file).exists(): 
+    if not pathlib.Path(out_file).exists():
       if simnames[i] == 'lr_exocam_4x5_hiCH4_22hr_branch2':
         data = nc.Dataset(simnames[i]+'/merged_hist/'+simnames[i]+'.cam.h1.merged_0065_0065.nc','r')
       elif simnames[i] == 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr_branch':
@@ -206,7 +208,7 @@ for ilevel in np.arange(2):
 
     field_mean = smoothing_lon(field_mean,10)
     field_anom_mean = smoothing_lon(field_anom_mean,10)
- 
+
     print('field peaks = ',np.max(field_mean),np.min(field_mean))
     print('field anom peaks = ',np.max(field_anom_mean),np.min(field_anom_mean))
 
@@ -274,7 +276,7 @@ for ilevel in np.arange(2):
   #ax.xaxis.set_ticks([-90,0,90])
     xlim = ax.get_xlim()
     dxlim = xlim[1] - xlim[0]
-    ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])  
+    ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
     ax.tick_params(direction='in')
   #if i == len(simnames)-1:
@@ -285,7 +287,7 @@ for ilevel in np.arange(2):
       cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
       cax.xaxis.set_ticks_position('top')
       cax.xaxis.set_label_position('top')
-      cbar.set_label('Divergence anomaly at %s hPa\n(%s s$^{-1}$)'%(level_name[ilevel],anom_scale[1]))    
+      cbar.set_label('Divergence anomaly at %s hPa\n(%s s$^{-1}$)'%(level_name[ilevel],anom_scale[1]))
  # cax = make_axes_locatable(ax).append_axes('right',size='5%',pad=0.05)
  # cbar = plt.colorbar(c,cax=cax)
 
@@ -304,7 +306,7 @@ for ilevel in np.arange(2):
       clm_anom_cp[:,:,:imode] = 0.0
       clm_anom_cp[:,:,imode+1:] = 0.0
       shmap_anom = np.real(sh.expand.MakeGridDH(clm_anom_cp,sampling=2))
- 
+
       print('SH peaks (mean) = ',np.max(shmap_mean),np.min(shmap_mean))
       print('SH peaks (anomaly) = ',np.max(shmap_anom),np.min(shmap_anom))
 
@@ -332,7 +334,7 @@ for ilevel in np.arange(2):
         cbar.set_label(mode_label[imode-1]+' mode at %s hPa\n(%s s$^{-1}$)'%(level_name[ilevel],lm_scale[imode-1][1]))
 #    cax = make_axes_locatable(ax).append_axes('right',size='5%',pad=0.05)
 #    cbar = plt.colorbar(c,cax=cax)
- 
+
 #  cbar.set_label(clabel)
 
 #plt.tight_layout()
