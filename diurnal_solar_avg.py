@@ -18,8 +18,8 @@ output_path = '../sims_main_new/'
 
 #list of simulations here, with rotperiod (units of modern day), and heat capacity
 simlist = [
-#           {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
-#               'rotper': 0.9167, 'cp': 1034.93},
+           {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
+                'rotper': 0.9167, 'cp': 1034.93},
            {'name': 'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
                 'rotper': 1.0, 'cp': 1034.93},
           ]
@@ -33,24 +33,24 @@ simlist = [
 # NOTE that 3-D fields use a lot of memory! (20 GB)
 # ALSO, running all of these at once will take a very long time
 fields = [
-#          ['FSDS','fsds_phase',2, False, 'all'],    #surface SW flux down
-#          ['PS', 'p_anom', 2, True, 'all'],         #surface pressure
-#          ['TGCLDCWP', 'CWP', 2, True, 'all'],      #cloud water path at surface
-#          ['PRECT', 'PRECT', 2, True, 'all'],       #total precip
-#          ['PRECT', 'PRECT', 2, True, 'land'],      #total precip over land
-#          ['PRECT', 'PRECT', 2, True, 'ocean'],     #total precip over ocean
-#          ['DIVV', 'DIVV', 3, True, 'all'],         #horizontal divergence
+          ['FSDS','fsds_phase',2, False, 'all'],    #surface SW flux down
+          ['PS', 'p_anom', 2, True, 'all'],         #surface pressure
+          ['TGCLDCWP', 'CWP', 2, True, 'all'],      #cloud water path at surface
+          ['PRECT', 'PRECT', 2, True, 'all'],       #total precip
+          ['PRECT', 'PRECT', 2, True, 'land'],      #total precip over land
+          ['PRECT', 'PRECT', 2, True, 'ocean'],     #total precip over ocean
+          ['DIVV', 'DIVV', 3, True, 'all'],         #horizontal divergence
                                                     #special case, need to calc from U and V
-#          ['QRS', 'QRS', 3, True, 'all'],           #SW heating rate
+          ['QRS', 'QRS', 3, True, 'all'],           #SW heating rate
                                                     #special case, convert units
-#          ['CMFMC', 'CMFMC', 3, True, 'all'],       #total convective mass flux
-#          ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'], #deep convective mass flux
-#          ['ZMDT', 'ZMDT', 3, True, 'all'],         #deep convective heating rate
-#          ['T', 'T', 3, True, 'all'],               #temperature
-#          ['RELHUM', 'RELHUM', 3, True, 'all'],     #relative humidity
-#          ['CWC', 'CWC', 3, True, 'all'],           #cloud water content (density)
+          ['CMFMC', 'CMFMC', 3, True, 'all'],       #total convective mass flux
+          ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'], #deep convective mass flux
+          ['ZMDT', 'ZMDT', 3, True, 'all'],         #deep convective heating rate
+          ['T', 'T', 3, True, 'all'],               #temperature
+          ['RELHUM', 'RELHUM', 3, True, 'all'],     #relative humidity
+          ['CWC', 'CWC', 3, True, 'all'],           #cloud water content (density)
                                                     #special case, use IWC + LWC and take log
-#          ['Q', 'log_Q', 3, True, 'all']            #specific humidity
+          ['Q', 'log_Q', 3, True, 'all']            #specific humidity
                                                     #special case, take log of Q
           ['CMFSH','CMFSH', 3, True, 'all']         #shallow convective mass flux
                                                     #special case, need to calculate from CMFMC and DZM

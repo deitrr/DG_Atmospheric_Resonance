@@ -126,7 +126,7 @@ for i in np.arange(len(simnames)):
       f[:,lon<180] = field_mean[:,lon>=180]
       f[:,lon>=180] = field_mean[:,lon<180]
       fplot = np.mean(f[tropics,:]*np.cos(lat[tropics]*np.pi/180)[:,None],axis=0)
-      import pdb; pdb.set_trace()
+
       f[:,lon<180] = prec_land[:,lon>=180]
       f[:,lon>=180] = prec_land[:,lon<180]
       fland = np.nanmean(f[tropics,:]*np.cos(lat[tropics]*np.pi/180)[:,None],axis=0)
