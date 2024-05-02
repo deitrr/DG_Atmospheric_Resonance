@@ -263,7 +263,11 @@ for i in np.arange(len(simnames)):
   else:
       ps_anom_mean = arc['ps_anom_mean']
   lmax = arc['lmax']
-  clm = arc['clm']
+  if 'clm_anom' in arc:
+      clm = arc['clm_anom']
+  else:
+      clm = arc['clm']
+
 
   clm[:,:2,:] = 0.0
   clm[:,3:,:] = 0.0

@@ -100,7 +100,12 @@ for i in np.arange(len(simnames)):
   else:
       # in some of the files I used the name ps_anom_mean instead of field_anom_mean
       panom[i] = np.max(np.abs(arc['ps_anom_mean']))
-  imag_dps[i] = -1*arc['clm'][1,2,2]*np.sqrt(2*15/8)
+  if 'clm_anom' in arc:
+      imag_dps[i] = -1*arc['clm_mean'][1,2,2]*np.sqrt(2*15/8)
+  else:
+      #inconsistent naming, again
+      imag_dps[i] = -1*arc['clm'][1,2,2]*np.sqrt(2*15/8)
+
 
 #this will be the synthesis plot
 plt.rcParams.update({'font.size':6})

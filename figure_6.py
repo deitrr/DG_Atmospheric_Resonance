@@ -61,7 +61,10 @@ for i in np.arange(len(simnames)):
     else:
         ps_anom_mean = arc['ps_anom_mean']
     lmax = arc['lmax']
-    clm = arc['clm']
+    if 'clm_anom' in arc:
+        clm = arc['clm_anom']
+    else:
+        clm = arc['clm']
     lon2d, lat2d = np.meshgrid(lon,lat)
 
   ax = fig.add_subplot(inner_grid[3*(i+1)])
