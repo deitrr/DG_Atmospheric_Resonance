@@ -79,7 +79,12 @@ for i in np.arange(len(simnames)):
         # in some of the files I used the name ps_anom_mean instead of field_anom_mean
         field_anom_mean = arc['ps_anom_mean']
 
-    clm_mean = arc['clm']
+    if 'clm_anom' in arc:
+        clm_mean = arc['clm_anom']
+    else:
+        #inconsistent naming again
+        clm_mean = arc['clm']
+
     print(np.max(np.abs(field_anom_mean/cscale[0])))
 
     field_anom_mean = smoothing_lon(field_anom_mean,10)
