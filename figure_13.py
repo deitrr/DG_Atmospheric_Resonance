@@ -22,7 +22,7 @@ globfiles1 = [sims_suppl + waccm_sim1 + '/merged_hist/' + waccm_sim1 + '.cam.h0.
 swfiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 +'_branch2_QRS_save.npz',
             sims_main + exo_sim1 + '_branch2/merged_hist/' + exo_sim1 +'_branch2_QRS_save.npz']
 mffiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 + '_branch2_CMFMC_save.npz',
-             sims_main + exo_sim1 + '_branch/merged_hist/' + exo_sim1 +'_branch_CMFMC_save.npz']
+             sims_main + exo_sim1 + '_branch2/merged_hist/' + exo_sim1 +'_branch2_CMFMC_save.npz']
 
 
 globfiles2 = [sims_suppl + waccm_sim2 + '/merged_hist/' + waccm_sim2 + '.cam.h0.globmean_0031_0060.nc',
@@ -186,13 +186,11 @@ for iset in np.arange(len(globfiles)):
             ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],rasterized=True,ms=3)
         else:
             ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],label=labels[iset][1],rasterized=True,ms=3)
-        # ax.set(ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         phase_s = np.arctan2(np.imag(dps2_s),np.real(dps2_s))*90/np.pi + 90
         ax = axes[i][1]
         ax.plot(prot,phase_s,symbols[iset],c=colors[1],rasterized=True,ms=3)
-        # ax.set(ylim=(-90,90))
         ax.set_xlabel('Length of day (hours)')
 
 
@@ -213,7 +211,6 @@ for iset in np.arange(len(globfiles)):
 
         ax = axes[i][1]
         ax.plot(prot,phase_t,symbols[iset],c=colors[2],rasterized=True,ms=3)
-        # ax.set(ylim=(-90,90))
         ax.set_xlabel('Length of day (hours)')
 
 
@@ -226,14 +223,12 @@ for iset in np.arange(len(globfiles)):
             ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],rasterized=True,ms=3)
         else:
             ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],label=labels[iset][3],rasterized=True,ms=3)
-        # ax.set(ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         phase_r = np.arctan2(np.imag(dps2_r),np.real(dps2_r))*90/np.pi + 90
 
         ax = axes[i][1]
         ax.plot(prot,phase_r,symbols[iset],c=colors[3],rasterized=True,ms=3)
-        # ax.set(xlim=(res_per-0.5,res_per+0.5),ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
 
@@ -242,5 +237,4 @@ axes[1][0].legend(loc='best',fontsize=6)
 
 plt.tight_layout()
 plt.savefig('figure_13.pdf')
-# plt.show()
 plt.close()

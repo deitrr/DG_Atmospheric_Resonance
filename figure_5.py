@@ -13,25 +13,26 @@ parent = '../sims_main/'
 
 simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
-            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch',
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
            ]
 
 label = ['22.25 hour', '24 hour']
-clabel = ['Horizontal divergence\n(10$^{-6}$ s$^{-1}$)', 'Temperature anomaly\n(K)', 'Relative humidity\nanomaly (%)',
-          '$\log$[Cloud water (kg m$^{-3}$)]\nanomaly ', '$\log$[Humidity (kg kg$^{-1}$)]\nanomaly ']
+clabel = ['Horizontal divergence\n(10$^{-6}$ s$^{-1}$)', 'Temperature anomaly\n(K)',
+          'Relative humidity\nanomaly (%)', '$\log$[Cloud water (kg m$^{-3}$)]\nanomaly ',
+          '$\log$[Humidity (kg kg$^{-1}$)]\nanomaly ']
 
-ilat = 22
-
-clevs = [np.linspace(-0.18,0.18,19)*1e-5,np.linspace(-1.2,1.2,25),np.linspace(-5,5,21),np.linspace(-2.,2,21),
-         np.linspace(-0.012,0.012,13),
-         np.linspace(1.5,8,21)*1e-8]
+clevs = [np.linspace(-0.18,0.18,19)*1e-5,np.linspace(-1.2,1.2,25),
+         np.linspace(-5,5,21),np.linspace(-2.,2,21),
+         np.linspace(-0.012,0.012,13), np.linspace(1.5,8,21)*1e-8]
 
 cscale = [1e-6, 1, 1, 1, 1, 1e-8]
 
 fig = plt.figure(figsize=(7.5,9))
 
-outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.1,right=0.87,bottom=0.05,top=0.97,height_ratios=(1,))
-inner_grid = gridspec.GridSpecFromSubplotSpec(6,3,subplot_spec=outer_grid[0],wspace=0.05,hspace=0.15,height_ratios=(1,1,1,1,1,1),width_ratios=(15,15,1))
+outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.1,right=0.87,
+                                    bottom=0.05,top=0.97,height_ratios=(1,))
+inner_grid = gridspec.GridSpecFromSubplotSpec(6,3,subplot_spec=outer_grid[0],
+    wspace=0.05,hspace=0.15,height_ratios=(1,1,1,1,1,1),width_ratios=(15,15,1))
 
 def smoothing_lon(field,ntimes):
    field_tmp = field.copy()

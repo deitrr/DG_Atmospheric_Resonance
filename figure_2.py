@@ -17,7 +17,7 @@ parent_path = '../sims_main/'
 
 simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
-            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch',
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2',
            ]
 
 label = ['22.25 hr', '24 hr']
@@ -25,11 +25,15 @@ label = ['22.25 hr', '24 hr']
 fig = plt.figure(figsize=(7.5,3))
 proj = 'cea'  #cylindrical equal area projection from basemap
 
-outer_grid = gridspec.GridSpec(1,3,wspace=0.1,hspace=0.15,left=0.06,right=0.91,bottom=0.06,top=0.93,width_ratios=(15,15,16))
+outer_grid = gridspec.GridSpec(1,3,wspace=0.1,hspace=0.15,left=0.06,right=0.91,
+                                bottom=0.06,top=0.93,width_ratios=(15,15,16))
 
-left_grid1 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=outer_grid[0,0],wspace=0.1,hspace=0.1)
-cen_grid1 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=outer_grid[0,1],wspace=0.1,hspace=0.1)
-right_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,2],wspace=0.1,hspace=0.1,width_ratios=(15,1))
+left_grid1 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=outer_grid[0,0],
+                                                        wspace=0.1,hspace=0.1)
+cen_grid1 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=outer_grid[0,1],
+                                                        wspace=0.1,hspace=0.1)
+right_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,2],
+                                      wspace=0.1,hspace=0.1,width_ratios=(15,1))
 
 cscale = [1, 1, 1]
 crange = np.array([ [1, 3], [-470, 470],

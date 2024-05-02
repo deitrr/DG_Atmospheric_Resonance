@@ -22,7 +22,7 @@ globfiles1 = [sims_suppl + waccm_sim1 + '/merged_hist/' + waccm_sim1 + '.cam.h0.
 swfiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 +'_branch2_QRS_save.npz',
             sims_main + exo_sim1 + '_branch2/merged_hist/' + exo_sim1 +'_branch2_QRS_save.npz']
 mffiles1 = [sims_suppl + waccm_sim1 + '_branch2/merged_hist/' + waccm_sim1 + '_branch2_CMFMC_save.npz',
-             sims_main + exo_sim1 + '_branch/merged_hist/' + exo_sim1 +'_branch_CMFMC_save.npz']
+             sims_main + exo_sim1 + '_branch2/merged_hist/' + exo_sim1 +'_branch2_CMFMC_save.npz']
 
 
 globfiles2 = [sims_suppl + waccm_sim2 + '/merged_hist/' + waccm_sim2 + '.cam.h0.globmean_0031_0060.nc',
