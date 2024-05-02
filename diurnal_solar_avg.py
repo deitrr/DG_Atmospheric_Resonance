@@ -31,6 +31,7 @@ simlist = [
 # whether to recenter solar longitude using FSDS output (True or False),
 # geography setting ('all, 'ocean', or 'land')]
 # NOTE that 3-D fields use a lot of memory! (20 GB)
+# ALSO, running all of these at once will take a very long time
 fields = [
           ['FSDS','fsds_phase',2, False, 'all'],
           ['PS', 'p_anom', 2, True, 'all'],
