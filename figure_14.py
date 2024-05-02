@@ -155,5 +155,5 @@ for i in np.arange(len(simnames)):
     if ifile == 0:
       ax.set_title(label[i])
 
-plt.savefig('figure_14.pdf')
+plt.savefig('figures/figure_14.pdf')
 plt.close()

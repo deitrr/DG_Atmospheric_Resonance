@@ -372,5 +372,5 @@ ax4.set(ylim = (-0.7,4.1))
 ax4.legend(lines4,labels4,loc='best',bbox_to_anchor=(1.,0.3,0.2,0.5),fontsize=6,handlelength=3,ncols=1)
 ax4.text(410, 3.5,'S = 0.9 S$_0$\n simulations',fontsize=10)
 
-plt.savefig('figure_3.pdf')
+plt.savefig('figures/figure_3.pdf')
 plt.close()

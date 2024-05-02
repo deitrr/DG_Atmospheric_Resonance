@@ -227,5 +227,5 @@ ycen = 0.5*(ax2.get_ylim()[1] + ax2.get_ylim()[0])
 ax2.set_ylim(ycen-0.5*dy,ycen+0.5*dy)
 ax2.tick_params(axis='y', labelcolor='0.4')
 
-plt.savefig('figure_1.pdf')
+plt.savefig('figures/figure_1.pdf')
 plt.close()
