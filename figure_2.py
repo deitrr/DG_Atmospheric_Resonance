@@ -127,7 +127,6 @@ for i in np.arange(len(simnames)):
     m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
     c = m.pcolormesh(shlon2d, shlat2d, shmap_anom/cscale[0], cmap='RdBu_r',rasterized=True,latlon='True',vmax=crange_sh[imode-1][1],vmin=crange_sh[imode-1][0])
-    print(np.max(np.abs(shmap_anom/cscale[0])))
 
     ax.yaxis.set_label_coords(-0.1,0.5)
     xlim = ax.get_xlim()
