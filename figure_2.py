@@ -141,5 +141,5 @@ for i in np.arange(len(simnames)):
 
     cbar.set_label(clabel[0],fontsize=8)
 
-plt.savefig('figure_2.pdf')
+plt.savefig('figures/figure_2.pdf')
 plt.close()

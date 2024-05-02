@@ -124,5 +124,5 @@ for i in np.arange(len(simnames)):
       cax.xaxis.set_label_position('top')
       cbar.set_label(clabels[imode],fontsize=8)
 
-plt.savefig('figure_6.pdf')
+plt.savefig('figures/figure_6.pdf')
 plt.close()

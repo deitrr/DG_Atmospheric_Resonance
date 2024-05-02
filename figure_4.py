@@ -412,5 +412,5 @@ for i in np.arange(len(simnames)):
   cbar.set_label(clabel[3],fontsize=8)
   cax.tick_params(axis='y')
 
-plt.savefig('figure_4.pdf')
+plt.savefig('figures/figure_4.pdf')
 plt.close()

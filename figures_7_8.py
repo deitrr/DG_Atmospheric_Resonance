@@ -173,5 +173,5 @@ for ilevel in np.arange(2):
         cax.xaxis.set_label_position('top')
         cbar.set_label(mode_label[imode-1]+' mode at %s hPa\n(%s s$^{-1}$)'%(level_name[ilevel],lm_scale[imode-1][1]))
 
-plt.savefig('figure_%d.pdf'%fignum[ilevel])
+plt.savefig('figures/figure_%d.pdf'%fignum[ilevel])
 plt.close()

@@ -236,5 +236,5 @@ axes[0][0].legend(loc='best',fontsize=6)
 axes[1][0].legend(loc='best',fontsize=6)
 
 plt.tight_layout()
-plt.savefig('figure_13.pdf')
+plt.savefig('figures/figure_13.pdf')
 plt.close()
