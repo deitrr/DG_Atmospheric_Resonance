@@ -103,26 +103,26 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+        ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
     else:
-    ax.xaxis.set_ticklabels([])
+        ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
     ax.text(0.03,0.9,label[i],rotation=0,transform=ax.transAxes,fontsize=9,color='k',fontweight='bold')
 
     #spharm
     for imode in [1,2]:
-    clm_anom_cp = clm_mean.copy()
-    clm_anom_cp[:,:imode,:] = 0.0
-    clm_anom_cp[:,imode+1:,:] = 0.0
-    clm_anom_cp[:,:,:imode] = 0.0
-    clm_anom_cp[:,:,imode+1:] = 0.0
-    shmap_anom = np.real(sh.expand.MakeGridDH(clm_anom_cp,sampling=2))
+        clm_anom_cp = clm_mean.copy()
+        clm_anom_cp[:,:imode,:] = 0.0
+        clm_anom_cp[:,imode+1:,:] = 0.0
+        clm_anom_cp[:,:,:imode] = 0.0
+        clm_anom_cp[:,:,imode+1:] = 0.0
+        shmap_anom = np.real(sh.expand.MakeGridDH(clm_anom_cp,sampling=2))
     if imode == 1:
-      ax = fig.add_subplot(cen_grid1[i])
+        ax = fig.add_subplot(cen_grid1[i])
     else:
-      ax = fig.add_subplot(right_grid1[2*i])
+        ax = fig.add_subplot(right_grid1[2*i])
     if i == 0:
-      ax.set_title(tlabels[imode],fontsize=8)
+        ax.set_title(tlabels[imode],fontsize=8)
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
     m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
