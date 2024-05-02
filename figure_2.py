@@ -92,7 +92,7 @@ for i in np.arange(len(simnames)):
     #anomaly
     ax = fig.add_subplot(left_grid1[i])
     if i == 0:
-    ax.set_title(tlabels[0],fontsize=8)
+        ax.set_title(tlabels[0],fontsize=8)
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
     m.drawparallels([-60,-30,0,30,60],labels = [True,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
