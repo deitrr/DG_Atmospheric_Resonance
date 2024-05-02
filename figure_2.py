@@ -85,8 +85,6 @@ for i in np.arange(len(simnames)):
         #inconsistent naming again
         clm_mean = arc['clm']
 
-    print(np.max(np.abs(field_anom_mean/cscale[0])))
-
     field_anom_mean = smoothing_lon(field_anom_mean,10)
 
     #anomaly
