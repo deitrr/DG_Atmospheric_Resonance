@@ -1,0 +1,20 @@
+#!/bin/bash -l
+#PBS -S /bin/bash
+#PBS -N merge_h0_files
+#PBS -j oe
+#PBS -m ae -M rdeitrick@uvic.ca
+
+#This is an example PBS scheduler script used execute merging code on a PBS
+#controlled cluster. Can be converted to a simple bash script by removing the
+#PBS commands above.
+
+source /home/rdeitrick/anaconda3/etc/profile.d/conda.sh
+conda activate myenv
+
+python3 --version
+
+# this will merge monthly history files up to year -l = 60
+python3 waccm_rot_sims/merge_compute_timemean.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr -l 60
+
+# this will produce time averaged files and a few others for years 30 to 60 (default)
+python3 waccm_rot_sims/time_mean_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_20hr

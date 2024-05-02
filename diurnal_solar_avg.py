@@ -3,6 +3,7 @@ import netCDF4 as nc
 import pdb
 import pathlib
 import warnings
+import os
 import scipy.interpolate as sint
 import pyshtools as sh
 from windspharm.standard import VectorWind
@@ -29,7 +30,7 @@ simlist = [
 # dimensions (2 or 3),
 # whether to recenter solar longitude using FSDS output (True or False),
 # geography setting ('all, 'ocean', or 'land')]
-# NOTE that 3-D fields can use a lot of memory!
+# NOTE that 3-D fields use a lot of memory! (20 GB)
 fields = [
           ['FSDS','fsds_phase',2, False, 'all'],
           ['PS', 'p_anom', 2, True, 'all'],

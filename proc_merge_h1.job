@@ -1,0 +1,18 @@
+#!/bin/bash -l
+#PBS -S /bin/bash
+#PBS -N merge_h1_solar0p9
+#PBS -j oe
+#PBS -m ae -M rdeitrick@uvic.ca
+
+#This is an example PBS scheduler script used execute merging code on a PBS
+#controlled cluster. Can be converted to a simple bash script by removing the
+#PBS commands above.
+
+source /home/rdeitrick/anaconda3/etc/profile.d/conda.sh
+conda activate myenv
+
+python3 --version
+
+#merges hourly data into a single huge file (~80 GB)
+#default is to merge year 61
+python3 waccm_rot_sims/merge_h1_files.py solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2

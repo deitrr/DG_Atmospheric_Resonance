@@ -68,7 +68,7 @@ simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-5hr_branch',
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_23hr_branch2',
-            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch', 
+            'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_24hr_branch2', 
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_25hr_branch', 
             ]
 
