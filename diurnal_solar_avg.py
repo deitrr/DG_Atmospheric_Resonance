@@ -23,12 +23,13 @@ simlist = [
                 'rotper': 1.0, 'cp': 1034.93},
           ]
 
-#these lists tell what quantities to use in averaging process
+#These lists tell what quantities to use in averaging process
 #[name in CAM (some exceptions to this),
 # desired output name (need to match plot code),
 # dimensions (2 or 3),
 # whether to recenter solar longitude using FSDS output (True or False),
 # geography setting ('all, 'ocean', or 'land')]
+# NOTE that 3-D fields can use a lot of memory!
 fields = [
           ['FSDS','fsds_phase',2, False, 'all'],
           ['PS', 'p_anom', 2, True, 'all'],
@@ -36,15 +37,15 @@ fields = [
           ['PRECT', 'PRECT', 2, True, 'all'],
           ['PRECT', 'PRECT', 2, True, 'land'],
           ['PRECT', 'PRECT', 2, True, 'ocean'],
-          ['DIVV', 'DIVV', 3, True, 'all'],
-          ['QRS', 'QRS', 3, True, 'all'],
+          ['DIVV', 'DIVV', 3, True, 'all'], #special case, need to calc from U and V
+          ['QRS', 'QRS', 3, True, 'all'],   #special case, convert units
           ['CMFMC', 'CMFMC', 3, True, 'all'],
           ['CMFMCDZM', 'CMFMCDZM', 3, True, 'all'],
           ['ZMDT', 'ZMDT', 3, True, 'all'],
           ['T', 'T', 3, True, 'all'],
           ['RELHUM', 'RELHUM', 3, True, 'all'],
-          ['CWC', 'CWC', 3, True, 'all'],
-          ['Q', 'log_Q', 3, True, 'all']
+          ['CWC', 'CWC', 3, True, 'all'],   #special case, use IWC + LWC and take log
+          ['Q', 'log_Q', 3, True, 'all']    #special case, take log of Q
           ]
 
 
