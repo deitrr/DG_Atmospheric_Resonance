@@ -54,7 +54,6 @@ for i in np.arange(len(simnames)):
     arc = np.load(p_anom_file)
     lon = arc['lon']
     lat = arc['lat']
-    ps = arc['ps']
     rotrate = arc['rotrate']
     if 'field_anom_mean' in arc:
         ps_anom_mean = arc['field_anom_mean']
