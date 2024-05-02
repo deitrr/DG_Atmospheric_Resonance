@@ -339,9 +339,6 @@ for iset in np.arange(len(sets)-1):
     labels4.append(labels[iset])
 
   if iset != len(sets)-2:
-    print(iset)
-    print(simnames[reference_index[iset]])
-
     if rows[iset] == 0:
       ax = ax2
     else:
