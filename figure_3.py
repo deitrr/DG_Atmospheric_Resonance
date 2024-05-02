@@ -279,14 +279,11 @@ for i in np.arange(len(simnames)):
   shlon = np.arange(0,360,180/n)
   shlon2d, shlat2d = np.meshgrid(shlon,shlat)
 
-#  print('SH peaks = ',np.max(shmap),np.min(shmap))
-
   dp22[i] = np.sqrt(clm[0,2,2]**2 + clm[1,2,2]**2)
   p_anom_amp[i] = np.max(shmap)
 
   #get glob mean surf T
-  #simpath = simnamesT[i]
-  if pathlib.Path(parent_path+simnames[i]).exists():
+  if pathlib.Path(parent_path+simnamesT[i]).exists():
     file = parent_path + simnamesT[i] + "/merged_hist/" + simnamesT[i] + ".cam.h0.globmean_0031_0060.nc"
   else:
     file = suppl_path + simnamesT[i] + "/merged_hist/" + simnamesT[i] + ".cam.h0.globmean_0031_0060.nc"
