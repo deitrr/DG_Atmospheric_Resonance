@@ -9,7 +9,7 @@ The simulation output necessary to plot all figures is located here: [To be upda
 
 This code requires Python 3 as well as the following Python libraries: numpy, scipy, matplotlib, netCDF4, cdo, basemap, pyshtools
 
-## Post-processing
+## Post-processing and plotting
 
 Outputs from the atmosphere model were monthly history files ("h0") for 60 years of integration and daily history files ("h1") with hourly data for an additional year, usually year 61. These history files are not included in the data repository above as the final size would be far too large to share. 
 
