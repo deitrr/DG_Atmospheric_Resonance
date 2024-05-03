@@ -19,4 +19,4 @@ The merged and averaged files are processed using `merge_h0.py`, `merge_h1.py`, 
 
 The most intensive part of post-processing is what I called "diurnal-averaging around the Solar longitude". This is done using `diurnal_solar_avg.py`, which can be simply executed from the command line, though I don't recommend running it as is because it will take a very long time and will use up to 20 GB of memory. It is better to open that file, comment out certian items in the "fields" list, and run in piecemeal, or else to use a scheduler on a cluster. The output from that script is also included in the data repo, so it is not necessary to run it, but I include it here for transparency and record keeping. It will not process the data for all simulations as is--additional simulations need to be added to the script for that. 
 
-The scripts `figure_x.py` create the plots from the paper, as one would expect.
+The scripts `figure_x.py` create the plots from the paper, as one would expect. These are included here for reproducibility, transparency, and the odd chance they might be helpful to someone, somewhere. 
