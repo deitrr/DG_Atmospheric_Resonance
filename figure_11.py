@@ -90,7 +90,7 @@ for jlon in np.arange(len(ilons)):
     ax.invert_yaxis()
     ax.set_title(titles[jlon],fontsize=8)
     if jlon == 2:
-      ax.legend(loc='best',ncols=1,fontsize=5)
+      ax.legend(loc='best',ncols=1,fontsize=4)
       ax.set(xlabel=xlabels[ifile])
 
 plt.tight_layout()
