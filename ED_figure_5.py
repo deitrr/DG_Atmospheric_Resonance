@@ -109,7 +109,7 @@ for i in np.arange(len(simnames)):
         ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
     ax.text(0.01,1.02,label[i],rotation=0,transform=ax.transAxes,fontsize=6,
-                            color='w',fontweight='bold')
+                            color='k',fontweight='bold')
     if i == 0:
       cax = fig.add_subplot(inner_grid[0])
       cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
