@@ -30,21 +30,21 @@ outer_grid = gridspec.GridSpec(4,2,wspace=0.15,hspace=0.15,left=0.06,right=0.88,
                                     bottom=0.03,top=0.97,width_ratios=(16,31))
 
 left_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,0],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,1))
 right_grid1 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[0,1],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,15,1))
 left_grid2 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[1,0],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,1))
 right_grid2 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[1,1],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,15,1))
 left_grid3 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[2,0],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,1))
 right_grid3 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[2,1],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,15,1))
 left_grid4 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[3,0],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,1))
 right_grid4 = gridspec.GridSpecFromSubplotSpec(2,3,subplot_spec=outer_grid[3,1],
-                                    wspace=0.1,hspace=0.1,width_ratios=(15,15,1))
+                                    wspace=0.1,hspace=0.15,width_ratios=(15,15,1))
 
 levs = [26,39]
 imode = 2
