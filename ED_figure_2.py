@@ -152,22 +152,22 @@ for iset in np.arange(len(globfiles)):
         res_per = prot[np.argmax(dps2)]
 
         ax = axes[i][0]
-        ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],rasterized=True,ms=1,mfc=mfc[iset][0])
+        ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],ms=1,mfc=mfc[iset][0])
         ax.set(xlim=(np.min(prot),np.max(prot)),ylim=(0,3000))
         axtmp = ax.secondary_xaxis('top',functions=(prot2h,h2prot))
         axtmp.set_xlabel('Equivalent depth (km)')
 
         ax = axes[i][1]
-        ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],rasterized=True,ms=1,mfc=mfc[iset][0])
+        ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],ms=1,mfc=mfc[iset][0])
         ax.set(xlim=(res_per-0.5,res_per+0.5),ylim=(0,3000))
         axtmp = ax.secondary_xaxis('top',functions=(prot2h,h2prot))
         axtmp.set_xlabel('Equivalent depth (km)')
 
         ax = axes[i][2]
         if i == 0:
-            ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],label=setlabels[iset],rasterized=True,ms=1,mfc=mfc[iset][0])
+            ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],label=setlabels[iset],ms=1,mfc=mfc[iset][0])
         else:
-            ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],label=labels[iset][0],rasterized=True,ms=1,mfc=mfc[iset][0])
+            ax.plot(prot,np.absolute(dps2),symbols[iset],c=colors[0],label=labels[iset][0],ms=1,mfc=mfc[iset][0])
         ax.set(xlim=(23.5,24.5),ylim=(0,200))
         axtmp = ax.secondary_xaxis('top',functions=(prot2h,h2prot))
         axtmp.set_xlabel('Equivalent depth (km)')
@@ -176,20 +176,20 @@ for iset in np.arange(len(globfiles)):
         J2_stratos[p2>100e2] = 0.0
         dps2_s = solve_vse(h,x2,J2_stratos,Hf)
         ax = axes[i][0]
-        ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],rasterized=True,ms=1,mfc=mfc[iset][1])
+        ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],ms=1,mfc=mfc[iset][1])
         ax.set(ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][1]
-        ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],rasterized=True,ms=1,mfc=mfc[iset][1])
+        ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],ms=1,mfc=mfc[iset][1])
         ax.set(xlim=(res_per-0.5,res_per+0.5),ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][2]
         if i == 0:
-            ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],rasterized=True,ms=1,mfc=mfc[iset][1])
+            ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],ms=1,mfc=mfc[iset][1])
         else:
-            ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],label=labels[iset][1],rasterized=True,ms=1,mfc=mfc[iset][1])
+            ax.plot(prot,np.absolute(dps2_s),symbols[iset],c=colors[1],label=labels[iset][1],ms=1,mfc=mfc[iset][1])
         ax.set(xlim=(23.5,24.5),ylim=(0,200))
         ax.set_xlabel('Length of day (hours)')
 
@@ -197,39 +197,39 @@ for iset in np.arange(len(globfiles)):
         J2_tropos[p2<100e2] = 0.0
         dps2_t = solve_vse(h,x2,J2_tropos,Hf)
         ax = axes[i][0]
-        ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],rasterized=True,ms=1,mfc=mfc[iset][2])
+        ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],ms=1,mfc=mfc[iset][2])
         ax.set(ylim=(0,3000),ylabel='Pressure anomaly (Pa)\n(%s forcing/profile)'%model[i])
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][1]
-        ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],rasterized=True,ms=1,mfc=mfc[iset][2])
+        ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],ms=1,mfc=mfc[iset][2])
         ax.set(xlim=(res_per-0.5,res_per+0.5),ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][2]
         if i == 0:
-            ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],rasterized=True,ms=1,mfc=mfc[iset][2])
+            ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],ms=1,mfc=mfc[iset][2])
         else:
-            ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],label=labels[iset][2],rasterized=True,ms=1,mfc=mfc[iset][2])
+            ax.plot(prot,np.absolute(dps2_t),symbols[iset],c=colors[2],label=labels[iset][2],ms=1,mfc=mfc[iset][2])
         ax.set(xlim=(23.5,24.5),ylim=(0,200))
         ax.set_xlabel('Length of day (hours)')
 
         dps2_r = solve_vse(h,x2,J2_rad,Hf)
         ax = axes[i][0]
-        ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],rasterized=True,ms=1,mfc=mfc[iset][3])
+        ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],ms=1,mfc=mfc[iset][3])
         ax.set(ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][1]
-        ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],rasterized=True,ms=1,mfc=mfc[iset][3])
+        ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],ms=1,mfc=mfc[iset][3])
         ax.set(xlim=(res_per-0.5,res_per+0.5),ylim=(0,3000))
         ax.set_xlabel('Length of day (hours)')
 
         ax = axes[i][2]
         if i == 0:
-            ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],rasterized=True,ms=1,mfc=mfc[iset][3])
+            ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],ms=1,mfc=mfc[iset][3])
         else:
-            ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],label=labels[iset][3],rasterized=True,ms=1,mfc=mfc[iset][3])
+            ax.plot(prot,np.absolute(dps2_r),symbols[iset],c=colors[3],label=labels[iset][3],ms=1,mfc=mfc[iset][3])
         ax.set(xlim=(23.5,24.5),ylim=(0,200))
         ax.set_xlabel('Length of day (hours)')
 
