@@ -165,5 +165,5 @@ for i in np.arange(len(simnames)):
       cax.xaxis.set_label_position('top')
       cbar.set_label(mode_label[imode-1]+' mode (kg m$^{-2}$)')
 
-plt.savefig('figures/figure_9.pdf')
+plt.savefig('figures/ED_figure_4.eps')
 plt.close()

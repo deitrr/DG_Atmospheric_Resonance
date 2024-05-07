@@ -94,5 +94,5 @@ for jlon in np.arange(len(ilons)):
       ax.set(xlabel=xlabels[ifile])
 
 plt.tight_layout()
-plt.savefig('figures/figure_11.pdf')
+plt.savefig('figures/ED_figure_6.eps')
 plt.close()

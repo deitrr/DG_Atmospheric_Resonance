@@ -167,5 +167,5 @@ for i in np.arange(len(simnames)):
         cax.xaxis.set_label_position('top')
         cbar.set_label(mode_label[imode-1]+' mode (%s m s$^{-1}$)'%lm_scale[imode-1][1])
 
-plt.savefig('figures/figure_10.pdf')
+plt.savefig('figures/ED_figure_5.eps')
 plt.close()

@@ -38,7 +38,7 @@ label = ['16 hour', '18 hour', '20 hour', '21 hour', '21.5 hour', '22 hour', '22
 
 field = 'DIVV'
 
-fignum = [7,8]
+fignum = [8,9]
 
 level_name = ['200','1000']
 levels = [26,39]   #roughly 200 hPa and 1000 hPa
@@ -170,5 +170,5 @@ for ilevel in np.arange(2):
         cax.xaxis.set_label_position('top')
         cbar.set_label(mode_label[imode-1]+' mode at %s hPa\n(%s s$^{-1}$)'%(level_name[ilevel],lm_scale[imode-1][1]))
 
-  plt.savefig('figures/figure_%d.pdf'%fignum[ilevel])
+  plt.savefig('figures/ED_figure_%d.eps'%fignum[ilevel])
   plt.close()
