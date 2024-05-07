@@ -7,7 +7,7 @@ import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 #this just suppresses a deprecation warning from netCDF4
 import warnings
@@ -93,7 +93,7 @@ for i in np.arange(len(simnames)):
     #anomaly
     ax = fig.add_subplot(left_grid1[i])
     if i == 0:
-        ax.set_title(tlabels[0],fontsize=8)
+        ax.set_title(tlabels[0],fontsize=7)
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
     m.drawparallels([-60,-30,0,30,60],labels = [True,False,False,False], fontsize=6)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
@@ -104,11 +104,11 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-        ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+        ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
     else:
         ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
-    ax.text(0.03,0.9,label[i],rotation=0,transform=ax.transAxes,fontsize=9,color='k',fontweight='bold')
+    ax.text(0.03,0.9,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
 
     #spharm
     for imode in [1,2]:
@@ -123,7 +123,7 @@ for i in np.arange(len(simnames)):
         else:
             ax = fig.add_subplot(right_grid1[2*i])
         if i == 0:
-            ax.set_title(tlabels[imode],fontsize=8)
+            ax.set_title(tlabels[imode],fontsize=7)
         m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
         m.drawparallels([-60,-30,0,30,60],labels = [False,False,False,False], fontsize=6)
         m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
@@ -134,7 +134,7 @@ for i in np.arange(len(simnames)):
         dxlim = xlim[1] - xlim[0]
         ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
         if i == 1:
-          ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+          ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
         else:
           ax.xaxis.set_ticklabels([])
         ax.tick_params(direction='in')
@@ -144,7 +144,7 @@ for i in np.arange(len(simnames)):
           cbar = plt.colorbar(c,cax=cax)
           cax.tick_params(axis='y',labelsize=6)
 
-    cbar.set_label(clabel[0],fontsize=8)
+    cbar.set_label(clabel[0],fontsize=7)
 
 plt.savefig('figures/figure_2.pdf')
 plt.close()
