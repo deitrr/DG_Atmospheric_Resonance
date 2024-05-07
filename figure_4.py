@@ -7,7 +7,7 @@ from mpl_toolkits.basemap import Basemap
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -122,7 +122,7 @@ for i in np.arange(len(simnames)):
     if j == 0:
       ax = fig.add_subplot(left_grid1[2*i])
       if i == 0:
-        ax.set_title('Average field',fontsize=8)
+        ax.set_title('Average field',fontsize=7)
     else:
       ax = fig.add_subplot(left_grid2[2*i])
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
@@ -135,11 +135,11 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
     else:
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
-    ax.text(0.02,0.88,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='k',fontweight='bold')
+    ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
     if j == 0:
       cax = fig.add_subplot(left_grid1[2*i+1])
     else:
@@ -150,7 +150,7 @@ for i in np.arange(len(simnames)):
     if j == 0:
       ax = fig.add_subplot(right_grid1[3*i])
       if i == 0:
-        ax.set_title('Average anomaly',fontsize=8)
+        ax.set_title('Average anomaly',fontsize=7)
     else:
       ax = fig.add_subplot(right_grid2[3*i])
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
@@ -171,7 +171,7 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
     else:
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
@@ -187,7 +187,7 @@ for i in np.arange(len(simnames)):
     if j == 0:
       ax = fig.add_subplot(right_grid1[3*i+1])
       if i == 0:
-        ax.set_title('Semidiurnal mode',fontsize=8)
+        ax.set_title('Semidiurnal mode',fontsize=7)
     else:
       ax = fig.add_subplot(right_grid2[3*i+1])
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
@@ -206,7 +206,7 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
     else:
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
@@ -215,7 +215,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(right_grid2[3*i+2])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=8)
+    cbar.set_label(clabel[j],fontsize=7)
 
 
   #plot CWP
@@ -241,11 +241,11 @@ for i in np.arange(len(simnames)):
   dxlim = xlim[1] - xlim[0]
   ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
   if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
-  ax.text(0.02,0.88,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='w',fontweight='bold')
+  ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid3[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
 
@@ -270,7 +270,7 @@ for i in np.arange(len(simnames)):
   dxlim = xlim[1] - xlim[0]
   ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
   if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
@@ -300,13 +300,13 @@ for i in np.arange(len(simnames)):
   dxlim = xlim[1] - xlim[0]
   ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
   if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid3[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=8)
+  cbar.set_label(clabel[2],fontsize=7)
 
 
   #plot precip
@@ -344,11 +344,11 @@ for i in np.arange(len(simnames)):
   dxlim = xlim[1] - xlim[0]
   ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
   if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
-  ax.text(0.02,0.88,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='k',fontweight='bold')
+  ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid4[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
   cax.tick_params(axis='y')
@@ -372,7 +372,7 @@ for i in np.arange(len(simnames)):
   dxlim = xlim[1] - xlim[0]
   ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
   if i == 1:
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
   else:
     ax.xaxis.set_ticklabels([])
   ax.tick_params(direction='in')
@@ -406,13 +406,13 @@ for i in np.arange(len(simnames)):
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     if i == 1:
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=8)
+      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'],fontsize=7)
     else:
       ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid4[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[3],fontsize=8)
+  cbar.set_label(clabel[3],fontsize=7)
   cax.tick_params(axis='y')
 
 plt.savefig('figures/figure_4.pdf')

@@ -6,7 +6,7 @@ import warnings
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -356,7 +356,7 @@ ax2.set_xlabel('Semidiurnal pressure amplitude (Pa)')
 ax2.hlines(0.0,0,400,colors='k',linestyles=':')
 ax2.set_xlim(0,400)
 ax2.set(ylim = (-0.7,4.1))
-ax2.text(410, 3.5,'S = S$_0$\n simulations',fontsize=10)
+ax2.text(410, 3.5,'S = S$_0$\n simulations',fontsize=7)
 ax2.legend(lines2,labels2,loc='best',bbox_to_anchor=(1.,0.1,0.2,0.5),fontsize=6,handlelength=3,ncols=1)
 
 
@@ -370,7 +370,7 @@ ax4.hlines(0.0,0,400,colors='k',linestyles=':')
 ax4.set_xlim(0,400)
 ax4.set(ylim = (-0.7,4.1))
 ax4.legend(lines4,labels4,loc='best',bbox_to_anchor=(1.,0.3,0.2,0.5),fontsize=6,handlelength=3,ncols=1)
-ax4.text(410, 3.5,'S = 0.9 S$_0$\n simulations',fontsize=10)
+ax4.text(410, 3.5,'S = 0.9 S$_0$\n simulations',fontsize=7)
 
 plt.savefig('figures/figure_3.pdf')
 plt.close()
