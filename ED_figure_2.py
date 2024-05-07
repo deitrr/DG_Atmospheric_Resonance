@@ -12,8 +12,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change these paths to match the location of the sim_main and sim_suppl
 # download from the data repository
-sims_main = '../sims_main/'
-sims_suppl = '../sims_suppl/'
+sims_main = '../DG_Atmospheric_Resonance_archive/sims_main/'
+sims_suppl = '../DG_Atmospheric_Resonance_archive/sims_suppl/'
 
 waccm_sim1 = 'lambres_4x5_modern_24hr_ZM2'
 waccm_sim2 = 'lambres_4x5_modern_22-5hr_ZM2'

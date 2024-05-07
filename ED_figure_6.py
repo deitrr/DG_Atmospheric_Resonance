@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change this path to match the location of the sim_main download from the
 #data repository
-parent = '../sims_main/'
+parent = '../DG_Atmospheric_Resonance_archive/sims_main/'
 
 
 simnames = [
