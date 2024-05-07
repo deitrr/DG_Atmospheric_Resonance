@@ -49,12 +49,12 @@ savelabel = field
 
 cmap = plt.cm.RdBu_r
 cm = 1./2.54
-fig = plt.figure(figsize=(18*cm,13.5*cm))
+fig = plt.figure(figsize=(18*cm,15*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.03,right=0.98,
                                     bottom=0.05,top=0.93,height_ratios=(1,))
 inner_grid = gridspec.GridSpecFromSubplotSpec(12,4,subplot_spec=outer_grid[0]
-                ,wspace=0.15,hspace=0.1,height_ratios=(1,6,6,6,6,6,6,6,6,6,6,6))
+                ,wspace=0.15,hspace=0.27,height_ratios=(1,6,6,6,6,6,6,6,6,6,6,6))
 
 def smoothing_lon(field,ntimes):
    field_tmp = field.copy()
@@ -103,9 +103,12 @@ for i in np.arange(len(simnames)):
     xlim = ax.get_xlim()
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+    if i == len(simnames)-1:
+        ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+    else:
+        ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
-    ax.text(0.02,0.8,label[i],rotation=0,transform=ax.transAxes,fontsize=7,
+    ax.text(0.01,1.02,label[i],rotation=0,transform=ax.transAxes,fontsize=6,
                             color='w',fontweight='bold')
     if i == 0:
       cax = fig.add_subplot(inner_grid[0])
@@ -125,7 +128,10 @@ for i in np.arange(len(simnames)):
     xlim = ax.get_xlim()
     dxlim = xlim[1] - xlim[0]
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-    ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+    if i == len(simnames)-1:
+        ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+    else:
+        ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
     if i == 0:
       cax = fig.add_subplot(inner_grid[1])
@@ -160,7 +166,10 @@ for i in np.arange(len(simnames)):
       xlim = ax.get_xlim()
       dxlim = xlim[1] - xlim[0]
       ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
-      ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+      if i == len(simnames)-1:
+          ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
+      else:
+          ax.xaxis.set_ticklabels([])
       ax.tick_params(direction='in')
       if i == 0:
         cax = fig.add_subplot(inner_grid[imode+1])
