@@ -109,7 +109,8 @@ for i in np.arange(len(simnames)):
 
 #this will be the synthesis plot
 plt.rcParams.update({'font.size':6})
-fig = plt.figure(figsize=(7.5,5))
+cm = 1./2.54     #conversion from cm to inches
+fig = plt.figure(figsize=(18*cm,12*cm))
 
 bottom = 0.7
 height = 0.27

@@ -27,7 +27,8 @@ clevs = [np.linspace(-0.18,0.18,19)*1e-5,np.linspace(-1.2,1.2,25),
 
 cscale = [1e-6, 1, 1, 1, 1, 1e-8]
 
-fig = plt.figure(figsize=(7.5,9))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,21.6*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.1,right=0.87,
                                     bottom=0.05,top=0.97,height_ratios=(1,))

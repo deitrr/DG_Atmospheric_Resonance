@@ -294,7 +294,8 @@ for i in np.arange(len(simnames)):
     data = nc.Dataset(file,'r')
     Ts[i] = data['TS'][:].squeeze()
 
-fig = plt.figure(figsize=(7.5,6))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,14.4*cm))
 
 outer_grid = gridspec.GridSpec(2,1,wspace=0.2,hspace=0.3,left=0.08,right=0.8,
                                 bottom=0.1,top=0.98,height_ratios=(2,2))

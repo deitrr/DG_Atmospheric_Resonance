@@ -22,7 +22,8 @@ simnames = [
 
 label = ['22.25 hr', '24 hr']
 
-fig = plt.figure(figsize=(7.5,3))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,7.2*cm))
 proj = 'cea'  #cylindrical equal area projection from basemap
 
 outer_grid = gridspec.GridSpec(1,3,wspace=0.1,hspace=0.15,left=0.06,right=0.91,
