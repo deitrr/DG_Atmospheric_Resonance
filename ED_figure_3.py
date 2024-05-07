@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import netCDF4 as nc
 import scipy.interpolate as sint
 import pyshtools as sh
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 

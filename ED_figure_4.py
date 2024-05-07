@@ -6,6 +6,8 @@ import warnings
 from mpl_toolkits.basemap import Basemap
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 

@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import netCDF4 as nc
 import pathlib
 import warnings
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 

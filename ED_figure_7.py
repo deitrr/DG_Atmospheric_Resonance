@@ -5,6 +5,8 @@ import pdb
 import pathlib
 import warnings
 import matplotlib.gridspec as gridspec
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 

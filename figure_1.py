@@ -4,7 +4,7 @@ import netCDF4 as nc
 import scipy.interpolate as si
 import pathlib
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Arial']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 #this just suppresses a deprecation warning from netCDF4
 import warnings

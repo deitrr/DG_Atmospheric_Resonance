@@ -6,6 +6,8 @@ from mpl_toolkits.basemap import Basemap
 import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 #this just suppresses a deprecation warning from netCDF4
 import warnings

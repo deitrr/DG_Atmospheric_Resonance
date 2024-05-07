@@ -9,6 +9,8 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
