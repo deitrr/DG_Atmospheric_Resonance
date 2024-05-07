@@ -10,7 +10,7 @@ import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -65,7 +65,8 @@ def smoothing_lon(field,ntimes):
    return field_cp
 
 for ilevel in np.arange(2):
-  fig = plt.figure(figsize=(10,7.5))
+  cm = 1./2.54
+  fig = plt.figure(figsize=(18*cm,13.5*cm))
 
   outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.03,right=0.98,bottom=0.03,top=0.9,height_ratios=(1,))
   inner_grid = gridspec.GridSpecFromSubplotSpec(12,4,subplot_spec=outer_grid[0],wspace=0.15,hspace=0.1,height_ratios=(1,6,6,6,6,6,6,6,6,6,6,6))
@@ -109,7 +110,7 @@ for ilevel in np.arange(2):
     ax.xaxis.set_ticks([xlim[0]+0.25*dxlim,xlim[0]+0.5*dxlim,xlim[0]+0.75*dxlim])
     ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
     ax.tick_params(direction='in')
-    ax.text(0.02,0.8,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='k',fontweight='bold')
+    ax.text(0.02,0.8,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
 
     if i == 0:
       cax = fig.add_subplot(inner_grid[0])

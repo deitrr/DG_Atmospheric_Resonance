@@ -6,7 +6,7 @@ import pathlib
 import warnings
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -29,7 +29,8 @@ ilat = 22
 clevs = [np.linspace(-3,3,25)*1e-3,np.linspace(-3,3,25)*1e-3,np.linspace(1.5,8,21)*1e-8]
 cscale = [ 1e-3, 1e-3, 1e-8]
 
-fig = plt.figure(figsize=(7.5,6))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,14.4*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.1,right=0.87,bottom=0.05,top=0.96,height_ratios=(1,))
 inner_grid = gridspec.GridSpecFromSubplotSpec(3,3,subplot_spec=outer_grid[0],wspace=0.05,hspace=0.15,height_ratios=(1,1,1),width_ratios=(15,15,1))
@@ -122,7 +123,7 @@ for i in np.arange(len(simnames)):
       if i == 1:
         cax = fig.add_subplot(inner_grid[3*ifile+2])
         cbar = plt.colorbar(c,cax=cax)
-        cbar.set_label(clabel[ifile],fontsize=8)
+        cbar.set_label(clabel[ifile],fontsize=7)
       if i == 0:
         ax.set(ylabel = 'Pressure (hPa)')
     else:

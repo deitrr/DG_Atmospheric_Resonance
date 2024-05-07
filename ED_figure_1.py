@@ -10,7 +10,7 @@ import scipy.interpolate as sint
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -43,7 +43,8 @@ clabels = ['Surface pressure anomaly (Pa)',
 cmap = plt.cm.RdBu_r
 cscale = [400,50,400]
 
-fig = plt.figure(figsize=(7.5,9.5))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,22.8*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.05,right=0.98,
                                         bottom=0.03,top=0.94,height_ratios=(1,))
@@ -70,13 +71,13 @@ for i in np.arange(len(simnames)):
 
     ax = fig.add_subplot(inner_grid[3*(i+1)])
     m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection='cea')
-    m.drawparallels([-45,0,45],labels = [True,False,False,False], fontsize=8)
+    m.drawparallels([-45,0,45],labels = [True,False,False,False], fontsize=7)
     m.drawmeridians([-90,0,90],labels = [False,False,False,False], fontsize=6)
 
     c = m.pcolormesh(lon2d, lat2d, ps_anom_mean, cmap=cmap,rasterized=True,
                     latlon='True',vmax=cscale[0],vmin=-1*cscale[0])
     ax.yaxis.set_label_coords(-0.1,0.5)
-    ax.text(0.02,0.85,label[i],rotation=0,transform=ax.transAxes,fontsize=10,
+    ax.text(0.02,0.85,label[i],rotation=0,transform=ax.transAxes,fontsize=7,
                     color='k',fontweight='bold')
 
     if i == len(simnames)-1:
@@ -126,7 +127,7 @@ for i in np.arange(len(simnames)):
           cbar = plt.colorbar(c,cax=cax,orientation='horizontal')
           cax.xaxis.set_ticks_position('top')
           cax.xaxis.set_label_position('top')
-          cbar.set_label(clabels[imode],fontsize=8)
+          cbar.set_label(clabels[imode],fontsize=7)
 
 plt.savefig('figures/ED_figure_1.eps')
 plt.close()

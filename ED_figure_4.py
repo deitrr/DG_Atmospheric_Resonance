@@ -7,7 +7,7 @@ from mpl_toolkits.basemap import Basemap
 import pyshtools as sh
 import matplotlib.gridspec as gridspec
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -47,7 +47,8 @@ field = 'CWP'
 savelabel = field
 
 cmap = plt.cm.RdBu_r
-fig = plt.figure(figsize=(10,7.5))
+cm = 1./2.54
+fig = plt.figure(figsize=(18*cm,13.5*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.1,left=0.03,right=0.98,
                                 bottom=0.05,top=0.93,height_ratios=(1,))
@@ -105,7 +106,7 @@ for i in np.arange(len(simnames)):
   #ax.xaxis.set_ticks([-90,0,90])
   ax.xaxis.set_ticklabels(['Sunrise','Noon','Sunset'])
   ax.tick_params(direction='in')
-  ax.text(0.02,0.8,label[i],rotation=0,transform=ax.transAxes,fontsize=10,color='w',fontweight='bold')
+  ax.text(0.02,0.8,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='w',fontweight='bold')
 
   if i == 0:
     cax = fig.add_subplot(inner_grid[0])

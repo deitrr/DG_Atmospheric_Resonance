@@ -5,7 +5,7 @@ import scipy.interpolate as sint
 import pyshtools as sh
 
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -106,7 +106,8 @@ rotrate = 1/(2*Rp)*np.sqrt(h*Lam0*g)
 sigma = 2*rotrate
 prot = 2*np.pi/rotrate/3600
 
-fig, axes = plt.subplots(ncols=3,nrows=2,figsize=(7.5,5))
+cm = 1./2.54
+fig, axes = plt.subplots(ncols=3,nrows=2,figsize=(18*cm,12*cm))
 
 colors = ['k','orange','blue','0.5']
 labels = [['Total','Stratosphere only','Troposphere only','Radiation only'],[None,None,None,None]]

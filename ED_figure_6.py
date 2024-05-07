@@ -4,7 +4,7 @@ import netCDF4 as nc
 import pathlib
 import warnings
 from matplotlib import rc
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica'],'size':7})
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -45,7 +45,8 @@ ilons = [54, 0, 18] #longitudes near terminators and noon
 ilat = 22  #equatorial latitude
 titles = ['Sunrise', 'Noon', 'Sunset']
 
-fig, axes = plt.subplots(ncols=3,nrows=3,figsize=(7.5,6))
+cm = 1./2.54
+fig, axes = plt.subplots(ncols=3,nrows=3,figsize=(18*cm,14.4*cm))
 
 for i in np.arange(len(simnames)):
   print(simnames[i])
@@ -90,7 +91,7 @@ for jlon in np.arange(len(ilons)):
     ax.set_ylim(80,1000)
 
     ax.invert_yaxis()
-    ax.set_title(titles[jlon],fontsize=8)
+    ax.set_title(titles[jlon],fontsize=7)
     if jlon == 2:
       ax.legend(loc='best',ncols=1,fontsize=5)
       ax.set(xlabel=xlabels[ifile])
