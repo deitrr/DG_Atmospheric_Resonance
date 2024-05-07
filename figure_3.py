@@ -10,8 +10,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change these paths to match the location of the sim_main and sim_suppl
 # download from the data repository
-parent_path = '../sims_main/'
-suppl_path = '../sims_suppl/'
+parent_path = '../DG_Atmospheric_Resonance_archive/sims_main/'
+suppl_path = '../DG_Atmospheric_Resonance_archive/sims_suppl/'
 
 #list of simulations to put on this plot (30 year averages)
 #yes, this is a big mess

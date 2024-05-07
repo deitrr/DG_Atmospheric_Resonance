@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change this path to match the location of the sim_main download from the
 #data repository
-main_sim_path = '../sims_main/'
+main_sim_path = '../DG_Atmospheric_Resonance_archive/sims_main/'
 
 #list of simulations that will go into figure 1
 simnames =[

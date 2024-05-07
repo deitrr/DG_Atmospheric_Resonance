@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 #change this path to match the location of the sim_main download from the
 #data repository
-parent = '../sims_main/'
+parent = '../DG_Atmospheric_Resonance_archive/sims_main/'
 
 simnames = [
             'solar0p9_lr_exocam_4x5_ch4-30_co2-5250_22-25hr_branch2',
