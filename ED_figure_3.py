@@ -161,16 +161,16 @@ for iset in np.arange(len(globfiles)):
 
         ax = axes[i][0]
         if i == 0:
-            ax.plot(prot,np.imag(dps2),symbols[iset],c=colors[0],label=setlabels[iset],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2),symbols[iset],c=colors[0],label=setlabels[iset],ms=3)
         else:
-            ax.plot(prot,np.imag(dps2),symbols[iset],c=colors[0],label=labels[iset][0],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2),symbols[iset],c=colors[0],label=labels[iset][0],ms=3)
         ax.set(xlim=(np.min(prot),np.max(prot)),ylim=(-3000,3000))
         axtmp = ax.secondary_xaxis('top',functions=(prot2h,h2prot))
         axtmp.set_xlabel('Equivalent depth (km)')
 
         phase = np.arctan2(np.imag(dps2),np.real(dps2))*90/np.pi + 90
         ax = axes[i][1]
-        ax.plot(prot,phase,symbols[iset],c=colors[0],rasterized=True,ms=3)
+        ax.plot(prot,phase,symbols[iset],c=colors[0],ms=3)
         ax.set(xlim=(np.min(prot),np.max(prot)),ylim=(30,160),ylabel='Pressure anom. phase (deg)')
         axtmp = ax.secondary_xaxis('top',functions=(prot2h,h2prot))
         axtmp.set_xlabel('Equivalent depth (km)')
@@ -186,14 +186,14 @@ for iset in np.arange(len(globfiles)):
 
         ax = axes[i][0]
         if i == 0:
-            ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],ms=3)
         else:
-            ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],label=labels[iset][1],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_s),symbols[iset],c=colors[1],label=labels[iset][1],ms=3)
         ax.set_xlabel('Length of day (hours)')
 
         phase_s = np.arctan2(np.imag(dps2_s),np.real(dps2_s))*90/np.pi + 90
         ax = axes[i][1]
-        ax.plot(prot,phase_s,symbols[iset],c=colors[1],rasterized=True,ms=3)
+        ax.plot(prot,phase_s,symbols[iset],c=colors[1],ms=3)
         ax.set_xlabel('Length of day (hours)')
 
 
@@ -204,16 +204,16 @@ for iset in np.arange(len(globfiles)):
 
         ax = axes[i][0]
         if i == 0:
-            ax.plot(prot,np.imag(dps2_t),symbols[iset],c=colors[2],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_t),symbols[iset],c=colors[2],ms=3)
         else:
-            ax.plot(prot,np.imag(dps2_t),symbols[iset],c=colors[2],label=labels[iset][2],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_t),symbols[iset],c=colors[2],label=labels[iset][2],ms=3)
         ax.set(ylim=(-3000,3000),ylabel='Im{Pressure anomaly} (Pa)\n(%s forcing/profile)'%model[i])
         ax.set_xlabel('Length of day (hours)')
 
         phase_t = np.arctan2(np.imag(dps2_t),np.real(dps2_t))*90/np.pi + 90
 
         ax = axes[i][1]
-        ax.plot(prot,phase_t,symbols[iset],c=colors[2],rasterized=True,ms=3)
+        ax.plot(prot,phase_t,symbols[iset],c=colors[2],ms=3)
         ax.set_xlabel('Length of day (hours)')
 
 
@@ -223,15 +223,15 @@ for iset in np.arange(len(globfiles)):
 
         ax = axes[i][0]
         if i == 0:
-            ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],ms=3)
         else:
-            ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],label=labels[iset][3],rasterized=True,ms=3)
+            ax.plot(prot,np.imag(dps2_r),symbols[iset],c=colors[3],label=labels[iset][3],ms=3)
         ax.set_xlabel('Length of day (hours)')
 
         phase_r = np.arctan2(np.imag(dps2_r),np.real(dps2_r))*90/np.pi + 90
 
         ax = axes[i][1]
-        ax.plot(prot,phase_r,symbols[iset],c=colors[3],rasterized=True,ms=3)
+        ax.plot(prot,phase_r,symbols[iset],c=colors[3],ms=3)
         ax.set_xlabel('Length of day (hours)')
 
 
