@@ -108,7 +108,7 @@ for i in np.arange(len(simnames)):
     else:
         ax.xaxis.set_ticklabels([])
     ax.tick_params(direction='in')
-    ax.text(-0.3,0.95,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
+    ax.text(-0.35,0.95,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
 
     #spharm
     for imode in [1,2]:
