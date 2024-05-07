@@ -77,7 +77,7 @@ for i in np.arange(len(simnames)):
     c = m.pcolormesh(lon2d, lat2d, ps_anom_mean, cmap=cmap,rasterized=True,
                     latlon='True',vmax=cscale[0],vmin=-1*cscale[0])
     ax.yaxis.set_label_coords(-0.1,0.5)
-    ax.text(0.02,0.85,label[i],rotation=0,transform=ax.transAxes,fontsize=7,
+    ax.text(0.01,0.87,label[i],rotation=0,transform=ax.transAxes,fontsize=6,
                     color='k',fontweight='bold')
 
     if i == len(simnames)-1:
