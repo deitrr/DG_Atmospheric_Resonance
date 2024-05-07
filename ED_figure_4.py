@@ -48,7 +48,7 @@ savelabel = field
 
 cmap = plt.cm.RdBu_r
 cm = 1./2.54
-fig = plt.figure(figsize=(18*cm,13.5*cm))
+fig = plt.figure(figsize=(18*cm,15*cm))
 
 outer_grid = gridspec.GridSpec(1,1,wspace=0.2,hspace=0.2,left=0.03,right=0.98,
                                 bottom=0.05,top=0.93,height_ratios=(1,))
