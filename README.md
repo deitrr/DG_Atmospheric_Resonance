@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/793829283.svg)](https://zenodo.org/doi/10.5281/zenodo.11154642)
 
 # DG_Atmospheric_Resonance
 Scripts for plots and analysis of Deitrick &amp; Goldblatt atmospheric resonance paper: [To be updated]
