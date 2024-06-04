@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/793829283.svg)](https://zenodo.org/doi/10.5281/zenodo.11154642)
 
 # DG_Atmospheric_Resonance
-Scripts for plots and analysis of Deitrick &amp; Goldblatt atmospheric resonance paper: [To be updated]
+Scripts for plots and analysis of Deitrick &amp; Goldblatt atmospheric resonance paper: [https://doi.org/10.1038/s41561-024-01469-3](https://doi.org/10.1038/s41561-024-01469-3)
 
 The simulation output necessary to plot all figures is located here: [https://doi.org/10.20383/103.0960](https://doi.org/10.20383/103.0960)
 
