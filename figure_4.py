@@ -145,7 +145,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(left_grid2[2*i+1])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=7,rotation=90)
+    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=30)
 
     #anomaly
     if j == 0:
@@ -249,7 +249,7 @@ for i in np.arange(len(simnames)):
   ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid3[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=7,rotation=90)
+  cbar.set_label(clabel[2],fontsize=7,rotation=270)
 
   ax = fig.add_subplot(right_grid3[3*i])
   m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
