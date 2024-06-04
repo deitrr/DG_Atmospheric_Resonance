@@ -145,6 +145,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(left_grid2[2*i+1])
     cbar = plt.colorbar(c,cax=cax)
+    cbar.set_label(clabel[j],fontsize=7)
 
     #anomaly
     if j == 0:
