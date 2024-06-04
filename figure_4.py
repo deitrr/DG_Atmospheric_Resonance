@@ -26,7 +26,7 @@ cm = 1./2.54
 fig = plt.figure(figsize=(18*cm,21.6*cm))
 proj = 'cea'  #cylindrical equal area projection
 
-outer_grid = gridspec.GridSpec(4,2,wspace=0.21,hspace=0.15,left=0.06,right=0.92,
+outer_grid = gridspec.GridSpec(4,2,wspace=0.21,hspace=0.15,left=0.06,right=0.91,
                                     bottom=0.03,top=0.97,width_ratios=(16,31))
 
 left_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,0],
