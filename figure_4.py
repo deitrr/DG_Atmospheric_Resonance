@@ -26,7 +26,7 @@ cm = 1./2.54
 fig = plt.figure(figsize=(18*cm,21.6*cm))
 proj = 'cea'  #cylindrical equal area projection
 
-outer_grid = gridspec.GridSpec(4,2,wspace=0.2,hspace=0.15,left=0.06,right=0.92,
+outer_grid = gridspec.GridSpec(4,2,wspace=0.21,hspace=0.15,left=0.06,right=0.92,
                                     bottom=0.03,top=0.97,width_ratios=(16,31))
 
 left_grid1 = gridspec.GridSpecFromSubplotSpec(2,2,subplot_spec=outer_grid[0,0],
@@ -145,7 +145,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(left_grid2[2*i+1])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=15)
+    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=18)
 
     #anomaly
     if j == 0:
@@ -216,7 +216,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(right_grid2[3*i+2])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=15)
+    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=18)
 
 
   #plot CWP
@@ -249,7 +249,7 @@ for i in np.arange(len(simnames)):
   ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid3[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=15)
+  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=18)
 
   ax = fig.add_subplot(right_grid3[3*i])
   m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
@@ -307,7 +307,7 @@ for i in np.arange(len(simnames)):
   ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid3[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=15)
+  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=18)
 
 
   #plot precip
@@ -352,7 +352,7 @@ for i in np.arange(len(simnames)):
   ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid4[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=15)
+  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=18)
   cax.tick_params(axis='y')
 
   ax = fig.add_subplot(right_grid4[3*i])
@@ -414,7 +414,7 @@ for i in np.arange(len(simnames)):
     ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid4[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=15)
+  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=18)
   cax.tick_params(axis='y')
 
 plt.savefig('figures/figure_4.pdf')
