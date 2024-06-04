@@ -3,7 +3,7 @@
 # DG_Atmospheric_Resonance
 Scripts for plots and analysis of Deitrick &amp; Goldblatt atmospheric resonance paper: [To be updated]
 
-The simulation output necessary to plot all figures is located here: [To be updated]
+The simulation output necessary to plot all figures is located here: [https://doi.org/10.20383/103.0960](https://doi.org/10.20383/103.0960)
 
 ## Requirements
 
