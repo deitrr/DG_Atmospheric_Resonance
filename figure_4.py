@@ -145,7 +145,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(left_grid2[2*i+1])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=30)
+    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=15)
 
     #anomaly
     if j == 0:
@@ -216,7 +216,7 @@ for i in np.arange(len(simnames)):
     else:
       cax = fig.add_subplot(right_grid2[3*i+2])
     cbar = plt.colorbar(c,cax=cax)
-    cbar.set_label(clabel[j],fontsize=7,rotation=270)
+    cbar.set_label(clabel[j],fontsize=7,rotation=270,labelpad=15)
 
 
   #plot CWP
@@ -249,7 +249,7 @@ for i in np.arange(len(simnames)):
   ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid3[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=7,rotation=270)
+  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=15)
 
   ax = fig.add_subplot(right_grid3[3*i])
   m = Basemap(lat_0=0,lon_0=0,ax=ax,fix_aspect=False,projection=proj)
@@ -307,7 +307,7 @@ for i in np.arange(len(simnames)):
   ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid3[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[2],fontsize=7,rotation=270)
+  cbar.set_label(clabel[2],fontsize=7,rotation=270,labelpad=15)
 
 
   #plot precip
@@ -352,7 +352,7 @@ for i in np.arange(len(simnames)):
   ax.text(0.01,1.01,label[i],rotation=0,transform=ax.transAxes,fontsize=7,color='k',fontweight='bold')
   cax = fig.add_subplot(left_grid4[2*i+1])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[3],fontsize=7,rotation=270)
+  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=15)
   cax.tick_params(axis='y')
 
   ax = fig.add_subplot(right_grid4[3*i])
@@ -414,7 +414,7 @@ for i in np.arange(len(simnames)):
     ax.tick_params(direction='in')
   cax = fig.add_subplot(right_grid4[3*i+2])
   cbar = plt.colorbar(c,cax=cax)
-  cbar.set_label(clabel[3],fontsize=7,rotation=270)
+  cbar.set_label(clabel[3],fontsize=7,rotation=270,labelpad=15)
   cax.tick_params(axis='y')
 
 plt.savefig('figures/figure_4.pdf')
