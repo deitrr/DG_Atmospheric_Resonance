@@ -142,7 +142,7 @@ ax.set_xticks([16,18,20,22,24])
 
 #next row
 bottom = 0.38
-width= 0.23
+width= 0.225
 
 #sets this dynamic range for y axis in humidity plots
 dy = 1.2*np.max((np.max(q500[lines==0]) - np.min(q500[lines==0]),
@@ -202,7 +202,7 @@ dy_cwp = 1.2*np.max((np.abs(np.max(icwp[lines==0])-np.min(icwp[lines==0])),
                      np.abs(np.max(lcwp[lines==0])-np.min(lcwp[lines==0]))))
 
 bottom = 0.06
-width= 0.23
+width= 0.225
 ax = fig.add_axes([0.07,bottom,width,height])
 ax.plot(rotper[lines==0],lcwp[lines==0],color='k',marker='.',linestyle='-',lw=2)
 ax2 = ax.twinx()
