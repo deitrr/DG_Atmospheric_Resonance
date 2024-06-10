@@ -158,7 +158,8 @@ ycen = 0.5*(ax.get_ylim()[1] + ax.get_ylim()[0])
 ax.set_ylim(ycen-0.5*dy,ycen+0.5*dy)
 ycen = 0.5*(ax2.get_ylim()[1] + ax2.get_ylim()[0])
 ax2.set_ylim(ycen-0.5*dy,ycen+0.5*dy)
-ax2.tick_params(axis='y', labelcolor='0.4')
+ax2.tick_params(axis='y', labelcolor='0.5',direction='in',colors='0.5')
+ax2.spines["right"].set_edgecolor('0.5')
 
 dy = 1.2*np.max((np.max(tmq[lines==0]) - np.min(tmq[lines==0]),
              np.max(tmq[lines==1]) - np.min(tmq[lines==1])))
